@@ -1,0 +1,94 @@
+a:hover{
+	text-decoration: none!important;
+}
+.tags{
+	padding: 10px;
+}
+.tag-btn{
+	padding: 5px;
+	border: thin solid #ececec;
+	background: #ffffff;
+	color: rgba(0,0,0,0.6);
+	margin: 5px;
+}
+.tag-btn:hover{
+	cursor: pointer;
+}
+.elementos{
+	margin: 20px 0;
+}
+.imagen{
+	height: 200px;
+	background: #000000;
+	margin: 10px 0; 
+}
+.numeros{
+	text-align: center;
+	width: 100%;
+	color: #ececec;
+}
+.numeros a{
+	padding: 15px;
+	color: #1EB6FF;
+}
+.numeros a:hover{
+	text-decoration: none;
+	background: #ececec;
+}
+.tendencias{
+	margin: 20px 0;
+}
+.tendencias ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.tendencias li{
+	border-bottom:thin solid #ececec;
+	padding: 10px;
+	margin: 5px;
+}
+footer{
+	border-top: solid medium #ececec;
+	padding: 10px;
+}
+.copy{
+	text-align: center;
+	padding: 10px;
+	margin-top: 20px;
+}
+.bg-gray{
+	background: #ECECEC;
+}
+.titulo1{
+	color: #8a8a8a;
+}
+.titulo2{
+	color: #1EB6FF;
+	font-weight: bold;
+}
+.titulo3{
+	color: #1eb6ff;
+	text-align: right;
+	width: 100%;
+}
+.titulo-img{
+	color: #8a8a8a;
+}
+.colorazul{
+	color: #1eb6ff;
+}
+.page{
+	min-height: 80vh;
+}
+.pagination{
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+.pagination li{
+	margin: 0 10px;
+}
+.controles-chat{
+	margin: 20px 0;
+}
