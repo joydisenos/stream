@@ -27,7 +27,7 @@ Route::post('/dato/{id}/actualizar','DatoController@actualizar');
 });
 
 //dato Routes
-Route::group(['middleware'=> 'web'],function(){
+Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
   Route::resource('dato','\App\Http\Controllers\DatoController');
   Route::post('dato/{id}/update','\App\Http\Controllers\DatoController@update');
   Route::get('dato/{id}/delete','\App\Http\Controllers\DatoController@destroy');
@@ -39,14 +39,14 @@ Route::group(['middleware'=> 'web'],function(){
 });
 
 //movimiento Routes
-Route::group(['middleware'=> 'web'],function(){
+Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
   Route::resource('movimiento','\App\Http\Controllers\MovimientoController');
   Route::post('movimiento/{id}/update','\App\Http\Controllers\MovimientoController@update');
   Route::get('movimiento/{id}/delete','\App\Http\Controllers\MovimientoController@destroy');
   Route::get('movimiento/{id}/deleteMsg','\App\Http\Controllers\MovimientoController@DeleteMsg');
 });
 //billetera Routes
-Route::group(['middleware'=> 'web'],function(){
+Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
   Route::resource('billetera','\App\Http\Controllers\BilleteraController');
   Route::post('billetera/{id}/update','\App\Http\Controllers\BilleteraController@update');
   Route::get('billetera/{id}/delete','\App\Http\Controllers\BilleteraController@destroy');
@@ -54,7 +54,7 @@ Route::group(['middleware'=> 'web'],function(){
 });
 
 //foto Routes
-Route::group(['middleware'=> 'web'],function(){
+Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
   Route::resource('foto','\App\Http\Controllers\FotoController');
   Route::post('foto/{id}/update','\App\Http\Controllers\FotoController@update');
   Route::get('foto/{id}/delete','\App\Http\Controllers\FotoController@destroy');

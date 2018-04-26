@@ -15,6 +15,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware(['role:superadmin|admin|dev']);
+    }
+    
     public function index()
     {
         $users = \App\User::all();
