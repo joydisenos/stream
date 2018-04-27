@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Dato;
+use App\Billetera;
 
 class HomeController extends Controller
 {
@@ -29,9 +30,10 @@ class HomeController extends Controller
         $user_id = Auth::user()->id;
 
         $datos = Dato::where('user_id', $user_id)->first();
+        $billeteras = Billetera::where('user_id', $user_id)->first();
 
-
-        if(!$datos){
+        if(!$datos)
+        {
 
         $dato = new Dato;
 
@@ -48,10 +50,27 @@ class HomeController extends Controller
         $dato->interes = 'vacio';
 
         $dato->save();
+
+        
         }
 
-        $datos = Dato::where('user_id', $user_id)->first();
+        if(!$billeteras)
+        {
+            $billetera = new Billetera;
 
-        return view('usuario', compact('datos'));
+            $billetera->user_id = Auth::user()->id;
+
+            $billetera->disponible = 0;
+
+            $billetera->estado = 1;
+
+            $billetera->save();
+
+            
+
+        }
+
+
+        return view('usuario');
     }
 }

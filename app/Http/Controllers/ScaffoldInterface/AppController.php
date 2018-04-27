@@ -18,9 +18,9 @@ class AppController extends Controller
      */
 
     public function __construct()
-{
-    $this->middleware(['role:superadmin|admin|dev']);
-}
+    {
+        $this->middleware(['role:superadmin|admin|dev']);
+    }
 
     public function dashboard()
     {

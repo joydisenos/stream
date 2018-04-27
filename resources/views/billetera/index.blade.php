@@ -6,9 +6,7 @@
     <h1>
         Billeteras de Usuarios
     </h1>
-    <a href='{!!url("billetera")!!}/create' class = 'btn btn-success'><i class="fa fa-plus"></i> New</a>
-    <br>
-    <br>
+    
 
     
     <table class = "table table-striped table-bordered table-hover" style = 'background:#fff'>

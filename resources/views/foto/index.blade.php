@@ -6,9 +6,7 @@
     <h1>
         Foto Index
     </h1>
-    <a href='{!!url("foto")!!}/create' class = 'btn btn-success'><i class="fa fa-plus"></i> New</a>
-    <br>
-    <br>
+
     <table class = "table table-striped table-bordered table-hover" style = 'background:#fff'>
         <thead>
             <th>url</th>

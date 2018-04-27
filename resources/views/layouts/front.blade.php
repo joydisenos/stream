@@ -60,7 +60,11 @@
 
                                 <div class="dropdown-menu nav-item" aria-labelledby="navbarDropdown">
                                     
+                                    @hasanyrole('dev|admin|superadmin')
 
+                                    <a href="{{url('/scaffold-dashboard')}}" class="dropdown-item nav-link">Panel de Control</a>
+                                        
+                                    @endhasanyrole
                                     <a href="{{url('/usuario')}}" class="dropdown-item nav-link">Perfil</a>
                                         <a class="dropdown-item nav-link" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

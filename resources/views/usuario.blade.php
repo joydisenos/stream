@@ -74,28 +74,28 @@ Zona de Usuarios
 			<tr>	
 				<td></td>
 				<td>
-					<a class="btn btn-primary" href="{{url('/dato').'/'.$datos->id}}">Actualizar</a>
+					<a class="btn btn-primary" href="{{url('/dato').'/'.Auth::user()->dato->id}}">Actualizar</a>
 				</td>
 			</tr>
 			<tr>
 				<td>Biografía:</td>
-				<td>{{$datos->biografia}}</td>
+				<td>{{Auth::user()->dato->biografia}}</td>
 			</tr>
 			<tr>
 				<td>Año de Nacimiento:</td>
-				<td>{{$datos->nacimiento_ano}}</td>
+				<td>{{Auth::user()->dato->nacimiento_ano}}</td>
 			</tr>
 			<tr>
 				<td>Sexo:</td>
-				<td>{{$datos->sexo}}</td>
+				<td>{{Auth::user()->dato->sexo}}</td>
 			</tr>
 			<tr>
 				<td>Localidad:</td>
-				<td>{{$datos->localidad}}</td>
+				<td>{{Auth::user()->dato->localidad}}</td>
 			</tr>
 			<tr>
 				<td>Interés:</td>
-				<td>{{$datos->interes}}</td>
+				<td>{{Auth::user()->dato->interes}}</td>
 			</tr>
 		</table>
 	
@@ -107,7 +107,7 @@ Zona de Usuarios
 			<tr>
 				<td>Créditos Disponibles:</td>
 				<td>
-					<h2>0</h2>
+					<h2>{{Auth::user()->billetera->disponible}}</h2>
 				</td>
 			</tr>
 			<tr>

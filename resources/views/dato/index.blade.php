@@ -4,11 +4,9 @@
 
 <section class="content">
     <h1>
-        Dato Index
+        Datos usuarios
     </h1>
-    <a href='{!!url("dato")!!}/create' class = 'btn btn-success'><i class="fa fa-plus"></i> New</a>
-    <br>
-    <br>
+    
     <table class = "table table-striped table-bordered table-hover" style = 'background:#fff'>
         <thead>
             <th>user_id</th>
