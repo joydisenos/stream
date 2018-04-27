@@ -4,7 +4,7 @@
 
 <section class="content">
     <h1>
-        Movimiento Index
+        Movimientos Realizados
     </h1>
     
     <table class = "table table-striped table-bordered table-hover" style = 'background:#fff'>
