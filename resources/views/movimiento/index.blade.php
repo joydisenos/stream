@@ -9,12 +9,12 @@
     
     <table class = "table table-striped table-bordered table-hover" style = 'background:#fff'>
         <thead>
-            <th>user_id</th>
-            <th>cantidad</th>
-            <th>estado</th>
-            <th>transaccion</th>
-            <th>numero_trans</th>
-            <th>actions</th>
+            <th>Usuario</th>
+            <th>Cantidad</th>
+            <th>Estado</th>
+            <th>Transacción</th>
+            <th>Número de transacción</th>
+            <th>acciones</th>
         </thead>
         <tbody>
             @foreach($movimientos as $movimiento) 
