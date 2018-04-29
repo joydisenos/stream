@@ -50,10 +50,10 @@
           <div class="row">
             @foreach ($row as $camara)
                 <div class="col-md-4">
-                  <a href="{{ url('/camara/'. hashid()->encode($camara->id)) }}">
+                  <a href="{{ url('/camara/'. hashid()->encode($camara->user->id)) }}">
                     
                     <div class="imagen"></div>
-                    <div class="titulo-img">{{ $camara->name }}</div>
+                    <div class="titulo-img">{{ $camara->user->name }}</div>
 
                   </a>
                 </div>

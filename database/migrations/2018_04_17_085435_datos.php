@@ -27,6 +27,8 @@ class Datos extends Migration
         $table->longText('biografia');
         
         $table->String('nacimiento_ano');
+
+        $table->String('foto_perfil');
         
         $table->String('sexo');
         

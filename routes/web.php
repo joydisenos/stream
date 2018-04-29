@@ -12,18 +12,30 @@
 */
 
 Route::get('/', 'CamController@index');
+Route::get('/filtrar/{filtro}', 'CamController@filtrar');
 
 Auth::routes();
 
 Route::resource('camara', 'CamController');
 
+
 Route::group(['middleware'=> 'auth'],function(){
 
-Route::get('/usuario', 'HomeController@index')->name('usuario');
-
+Route::get('/usuario', 'HomeController@index');
 Route::get('/dato/{id}','DatoController@editar');
 Route::post('/dato/{id}/actualizar','DatoController@actualizar');
+Route::get('/comprar','MovimientoController@comprar');
+Route::post('/comprar','MovimientoController@store');
 
+Route::get('/movimientos', 'MovimientoController@listausuario');
+
+});
+
+//abono
+
+Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
+Route::get('/abonar/{id}','BilleteraController@aprobar');
+Route::get('/negar/{id}','BilleteraController@negar');
 });
 
 //dato Routes

@@ -6,7 +6,10 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Billetera;
+use App\Movimiento;
+use App\User;
 use Amranidev\Ajaxis\Ajaxis;
+use ElfSundae\Laravel\Hashid\Facades\Hashid;
 use URL;
 
 /**
@@ -94,13 +97,15 @@ class BilleteraController extends Controller
     public function show($id,Request $request)
     {
         $title = 'Show - billetera';
+        
+        $id_deco = Hashid::decode($id);
 
         if($request->ajax())
         {
-            return URL::to('billetera/'.$id);
+            return URL::to('billetera/'.$id_deco);
         }
 
-        $billetera = Billetera::findOrfail($id);
+        $billetera = Billetera::findOrfail($id_deco);
         return view('billetera.show',compact('title','billetera'));
     }
 
@@ -113,13 +118,19 @@ class BilleteraController extends Controller
     public function edit($id,Request $request)
     {
         $title = 'Edit - billetera';
+
+        $id_deco = Hashid::decode($id);
+
+
         if($request->ajax())
         {
-            return URL::to('billetera/'. $id . '/edit');
+            return URL::to('billetera/'. $id_deco[0] . '/edit');
         }
 
         
-        $billetera = Billetera::findOrfail($id);
+        $billetera = Billetera::findOrfail($id_deco[0]);
+
+
         return view('billetera.edit',compact('title','billetera'  ));
     }
 
@@ -130,19 +141,55 @@ class BilleteraController extends Controller
      * @param    int  $id
      * @return  \Illuminate\Http\Response
      */
+    public function aprobar($id)
+    {
+        $id_deco = Hashid::decode($id);
+
+        $movimiento = Movimiento::findOrfail($id_deco[0]);
+
+        $movimiento->estado = 2;
+
+        $movimiento->save();
+
+
+        $usuario = User::findOrfail($movimiento->user_id);
+
+        $billetera = Billetera::findOrfail($usuario->billetera->id);
+        
+        $billetera->disponible = $billetera->disponible + $movimiento->cantidad;
+        
+        $billetera->save();
+
+        return redirect('movimiento');
+    }
+
+    public function negar($id)
+    {
+        $id_deco = Hashid::decode($id);
+
+        $movimiento = Movimiento::findOrfail($id_deco[0]);
+
+        $movimiento->estado = 3;
+
+        $movimiento->save();
+
+        return redirect('movimiento');
+
+    }
+
     public function update($id,Request $request)
     {
-        $billetera = Billetera::findOrfail($id);
-    	
-        $billetera->user_id = $request->user_id;
-        
+
+        $id_deco=Hashid::decode($id);
+
+        $billetera = Billetera::findOrfail($id_deco[0]);
+
         $billetera->disponible = $request->disponible;
         
         $billetera->estado = $request->estado;
         
-        
         $billetera->save();
-
+        
         return redirect('billetera');
     }
 

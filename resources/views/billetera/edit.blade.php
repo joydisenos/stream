@@ -6,15 +6,14 @@
     <h1>
         Edit billetera
     </h1>
-    <a href="{!!url('billetera')!!}" class = 'btn btn-primary'><i class="fa fa-home"></i> Billetera Index</a>
+    <a href="{!!url('billetera')!!}" class = 'btn btn-primary'><i class="fa fa-home"></i> Billeteras</a>
     <br>
-    <form method = 'POST' action = '{!! url("billetera")!!}/{!!$billetera->
-        id!!}/update'> 
+    <form method = 'POST' action = '{!! url("billetera")!!}/{!!hashid()->encode($billetera->id)!!}/update'> 
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
         <div class="form-group">
-            <label for="user_id">user_id</label>
+            <label for="user_id">Usuario</label>
             <input id="user_id" name = "user_id" type="text" class="form-control" value="{!!$billetera->
-            user_id!!}"> 
+            user->name!!}" disabled=""> 
         </div>
         <div class="form-group">
             <label for="disponible">disponible</label>
@@ -23,10 +22,13 @@
         </div>
         <div class="form-group">
             <label for="estado">estado</label>
-            <input id="estado" name = "estado" type="text" class="form-control" value="{!!$billetera->
-            estado!!}"> 
+            <select id="estado" name = "estado" type="text" class="form-control" value="{!!$billetera->
+            estado!!}">
+                <option value="1">Activa</option>
+                <option value="2">Suspendida</option>
+            </select> 
         </div>
-        <button class = 'btn btn-success' type ='submit'><i class="fa fa-floppy-o"></i> Update</button>
+        <button class = 'btn btn-success' type ='submit'><i class="fa fa-floppy-o"></i> Actualizar</button>
     </form>
 </section>
 @endsection

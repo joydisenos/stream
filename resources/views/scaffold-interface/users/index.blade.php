@@ -3,17 +3,17 @@
 <section class="content">
 <div class="box box-primary">
 <div class="box-header">
-	<h3>All Users</h3>
+	<h3>Usuarios</h3>
 </div>
 	<div class="box-body">
-		<a href="{{url('/scaffold-users/create')}}" class = "btn btn-success"><i class="fa fa-plus fa-md" aria-hidden="true"></i> New</a>
+		<a href="{{url('/scaffold-users/create')}}" class = "btn btn-success"><i class="fa fa-plus fa-md" aria-hidden="true"></i> Nuevo Usuario</a>
 		<table class = "table table-hover">
 		<thead>
-			<th>Name</th>
+			<th>Nombre</th>
 			<th>Email</th>
 			<th>Roles</th>
-			<th>Permissions</th>
-			<th>Actions</th>
+			<th>Permisos</th>
+			<th>Acciones</th>
 		</thead>
 		<tbody>
 			@foreach($users as $user)

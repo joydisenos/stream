@@ -2,9 +2,23 @@
 
 @section('content')
 
+<!--<script src="https://simplewebrtc.com/latest-v2.js"></script>
+-->
+
+<script src="https://cdn.jsdelivr.net/rtc/latest/rtc.min.js"></script>
 
 <div class="container">
 	
+
+	
+        <div class="pure-u-1-5">
+        <div id="l-video"></div>
+    </div>
+    <div class="pure-u-4-5" id="r-video"></div>
+    
+        <div id="remotesVideos"></div>
+
+
 	<div class="row">
 		<div class="col-md-8">
 			
@@ -23,10 +37,13 @@
 		
 	<div class="row">
 		<div class="col-md-8">
+			
 			<div class="d-flex justify-content-between">
+			
+			
+			<button class="btn btn-primary">Iniciar Show Privado</button>
 			<button class="btn btn-primary">Seguir</button>
 			<button class="btn btn-outline-primary">Me gusta</button>
-			<button class="btn btn-primary">Iniciar Show Privado</button>
 			<button class="btn btn-primary">Comprar Créditos</button>
 			</div>
 		</div>
@@ -116,47 +133,6 @@
 	  
 
 
-<script>
-	window.onload = function() {
-
-  
-  navigator.getUserMedia = (navigator.getUserMedia ||
-                            navigator.webkitGetUserMedia ||
-                            navigator.mozGetUserMedia || 
-                            navigator.msGetUserMedia);
-
-}
-
-
-if (navigator.getUserMedia) {
-  
-  navigator.getUserMedia(
-   
-    {
-      video: true
-    },
-
-    
-    function(localMediaStream) {
-
-
-var vid = document.getElementById('camera-stream');
-
-
-vid.src = window.URL.createObjectURL(localMediaStream);
-    },
-
-    
-    function(err) {
-      
-      console.log('The following error occurred when trying to use getUserMedia: ' + err);
-    }
-  );
-
-} else {
-  alert('Sorry, your browser does not support getUserMedia');
-}
-
-</script>
+<script src="{{asset('/js/cam.js')}}"></script>
 
 @endsection

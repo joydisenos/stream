@@ -227,6 +227,6 @@ class DatoController extends Controller
         
         $dato->save();
 
-        return redirect('dato');
+        return redirect('perfil');
     }
 }

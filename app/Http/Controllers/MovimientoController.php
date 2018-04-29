@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Movimiento;
 use Amranidev\Ajaxis\Ajaxis;
+use Illuminate\Support\Facades\Auth;
 use URL;
 
 /**
@@ -32,8 +33,19 @@ class MovimientoController extends Controller
     public function index()
     {
         $title = 'Index - movimiento';
-        $movimientos = Movimiento::paginate(6);
-        return view('movimiento.index',compact('movimientos','title'));
+        $movimientos = Movimiento::where('estado','>','1')->orderBy('created_at','DESC')->paginate(6);
+        $pendientes = Movimiento::where('estado','=','1')->orderBy('created_at','DESC')->get();
+
+        return view('movimiento.index',compact('movimientos','title', 'pendientes'));
+    }
+
+    public function listausuario()
+    {
+        $user_id = Auth::user()->id;
+
+        $movimientos = Movimiento::where('user_id', '=' , $user_id)->orderBy('created_at','DESC')->get();
+
+        return view('usuario.movimientos' , compact('movimientos'));
     }
 
     /**
@@ -48,6 +60,12 @@ class MovimientoController extends Controller
         return view('movimiento.create');
     }
 
+    public function comprar()
+    {
+       
+        return view('usuario.comprar');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -59,13 +77,13 @@ class MovimientoController extends Controller
         $movimiento = new Movimiento();
 
         
-        $movimiento->user_id = $request->user_id;
+        $movimiento->user_id = Auth::user()->id;
 
         
         $movimiento->cantidad = $request->cantidad;
 
         
-        $movimiento->estado = $request->estado;
+        $movimiento->estado = 1;
 
         
         $movimiento->transaccion = $request->transaccion;
@@ -87,9 +105,10 @@ class MovimientoController extends Controller
                          'test-event',
                         ['message' => 'A new movimiento has been created !!']);
 
-        return redirect('movimiento');
+        return redirect('movimientos');
     }
 
+    
     /**
      * Display the specified resource.
      *
@@ -136,7 +155,7 @@ class MovimientoController extends Controller
      * @param    int  $id
      * @return  \Illuminate\Http\Response
      */
-    public function update($id,Request $request)
+    public function update($id, Request $Request)
     {
         $movimiento = Movimiento::findOrfail($id);
     	

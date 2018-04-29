@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Dato;
 use App\Billetera;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -31,6 +32,7 @@ class HomeController extends Controller
 
         $datos = Dato::where('user_id', $user_id)->first();
         $billeteras = Billetera::where('user_id', $user_id)->first();
+        $camaras= User::take(9)->get();
 
         if(!$datos)
         {
@@ -40,6 +42,8 @@ class HomeController extends Controller
         $dato->user_id = Auth::user()->id;
 
         $dato->biografia = 'vacio';
+
+        $dato->foto_perfil = 'vacio';
 
         $dato->nacimiento_ano = 'vacio';
 
@@ -71,6 +75,6 @@ class HomeController extends Controller
         }
 
 
-        return view('usuario');
+        return view('usuario', compact('camaras'));
     }
 }

@@ -21,11 +21,14 @@
             <tr>
                 <td>{!!$billetera->user->name!!}</td>
                 <td>{!!$billetera->disponible!!}</td>
-                <td>{!!$billetera->estado!!}</td>
+            @if($billetera->estado == 1)
+            <td>Activa</td>
+            @elseif($billetera->estado == 2)
+            <td><i></i>Suspendida</td>
+            @endif
                 <td>
-                    <a data-toggle="modal" data-target="#myModal" class = 'delete btn btn-danger btn-xs' data-link = "/billetera/{!!$billetera->id!!}/deleteMsg" ><i class = 'fa fa-trash'> delete</i></a>
-                    <a href = '#' class = 'viewEdit btn btn-primary btn-xs' data-link = '/billetera/{!!$billetera->id!!}/edit'><i class = 'fa fa-edit'> edit</i></a>
-                    <a href = '#' class = 'viewShow btn btn-warning btn-xs' data-link = '/billetera/{!!$billetera->id!!}'><i class = 'fa fa-eye'> info</i></a>
+                    
+                    <a href = "{{url('billetera').'/'.hashid()->encode($billetera->id).'/edit'}}" class = 'viewEdit btn btn-primary btn-xs'><i class = 'fa fa-edit'> edit</i></a>
                 </td>
             </tr>
             @endforeach 

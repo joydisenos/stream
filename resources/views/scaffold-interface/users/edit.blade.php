@@ -3,7 +3,7 @@
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header">
-			<h3>Edit User ({{$user->name}})</h3>
+			<h3>Editar Usuario ({{$user->name}})</h3>
 		</div>
 		<div class="box-body">
 			<form action="{{url('scaffold-users/update')}}" method = "post">
@@ -18,10 +18,10 @@
 					<input type="text" name = "name" value = "{{$user->name}}" class = "form-control" required>
 				</div>
 				<div class="form-group">
-					<label for="">Password</label>
+					<label for="">Contraseña</label>
 					<input type="password" name = "password" class = "form-control" placeholder = "password" required>
 				</div>
-				<button class = "btn btn-primary" type="submit">Update</button>
+				<button class = "btn btn-primary" type="submit">Actualizar</button>
 			</form>
 		</div>
 	</div>
@@ -43,13 +43,13 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<button class = 'btn btn-primary'>Add role</button>
+							<button class = 'btn btn-primary'>Agregar rol</button>
 						</div>
 					</form>
 					<table class = 'table'>
 						<thead>
-							<th>Role</th>
-							<th>Action</th>
+							<th>Rol</th>
+							<th>Acción</th>
 						</thead>
 						<tbody>
 							@foreach($userRoles as $role)
@@ -66,7 +66,7 @@
 		<div class="col-md-6">
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3>{{$user->name}} Permissions</h3>
+					<h3>{{$user->name}} Permisos</h3>
 				</div>
 				<div class="box-body">
 					<form action="{{url('scaffold-users/addPermission')}}" method = "post">
@@ -80,13 +80,13 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<button class = 'btn btn-primary'>Add permission</button>
+							<button class = 'btn btn-primary'>Agregar permiso</button>
 						</div>
 					</form>
 					<table class = 'table'>
 						<thead>
-							<th>Permission</th>
-							<th>Action</th>
+							<th>Permiso</th>
+							<th>Acción</th>
 						</thead>
 						<tbody>
 							@foreach($userPermissions as $permission)

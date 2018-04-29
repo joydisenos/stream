@@ -18,6 +18,9 @@ Zona de Usuarios
 	    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Perfil</a>
 	  </li>
 	  <li class="nav-item">
+	    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#fotos" role="tab" aria-controls="fotos" aria-selected="false">Mis Fotos</a>
+	  </li>
+	  <li class="nav-item">
 	    <a class="nav-link" id="creditos-tab" data-toggle="tab" href="#creditos" role="tab" aria-controls="creditos" aria-selected="false">Créditos</a>
 	  </li>
 
@@ -28,39 +31,26 @@ Zona de Usuarios
 
 		<div class="col-md-6">
 
-			<div class="row">
-				<div class="col">
-				<div class="imagen"></div>
-			</div>
-			<div class="col">
-				<div class="imagen"></div>
-			</div>
-			<div class="col">
-				<div class="imagen"></div>
-			</div>
-			</div>
-			<div class="row">
-				<div class="col">
-				<div class="imagen"></div>
-			</div>
-			<div class="col">
-				<div class="imagen"></div>
-			</div>
-			<div class="col">
-				<div class="imagen"></div>
-			</div>
-			</div>
-			<div class="row">
-				<div class="col">
-				<div class="imagen"></div>
-			</div>
-			<div class="col">
-				<div class="imagen"></div>
-			</div>
-			<div class="col">
-				<div class="imagen"></div>
-			</div>
-			</div>
+			
+			@foreach($camaras->chunk(3) as $row)
+				
+				<div class="row">
+					@foreach($row as $camara)
+					<div class="col">
+                  <a href="{{ url('/camara/'. hashid()->encode($camara->id)) }}">
+                    
+                    <div class="imagen"></div>
+                    <div class="titulo-img">{{ $camara->name }}</div>
+
+                  </a>
+                </div>
+					@endforeach
+				</div>
+	
+			@endforeach
+			
+
+
 
 		</div>
 
@@ -101,6 +91,23 @@ Zona de Usuarios
 	
 
 	  </div>
+
+
+		<div class="tab-pane fade" id="fotos" role="tabpanel" aria-labelledby="fotos-tab">
+
+		<div class="row">
+			<div class="col">Agregar Fotos</div>
+			<div class="col">
+				<form action="">
+				<input type="file">
+				<button class="btn btn-primary" type="submit">Subir</button>
+				</form>
+			</div>
+		</div>
+
+	  </div>
+
+
 	  <div class="tab-pane fade" id="creditos" role="tabpanel" aria-labelledby="creditos-tab">
 
 		<table class="table table-hover" >
@@ -111,8 +118,8 @@ Zona de Usuarios
 				</td>
 			</tr>
 			<tr>
-				<td><a href="" class="btn btn-primary">Comprar Créditos</a></td>
-				<td><a href="" class="btn btn-primary">Historial de Movimientos</a></td>
+				<td><a href="{{url('/comprar')}}" class="btn btn-primary">Comprar Créditos</a></td>
+				<td><a href="{{url('/movimientos')}}" class="btn btn-primary">Historial de Movimientos</a></td>
 			</tr>
 		</table>
 

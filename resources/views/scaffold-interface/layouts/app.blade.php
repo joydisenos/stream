@@ -114,11 +114,12 @@
 
 						<li class="header">Perfil</li>
 						<li class="treeview"><a href="{{url('/perfil')}}"><i class="fa fa-users"></i> <span>Perfil</span></a></li>
+						<li class="treeview"><a href="{{url('/dato')}}"><i class="fa fa-users"></i> <span>Todos los perfiles</span></a></li>
 						<li class="treeview"><a href="{{url('/foto')}}"><i class="fa fa-users"></i> <span>Fotos</span></a></li>
 						<li class="header">Historial</li>
-						<li class="treeview"><a href="{{url('/billetera')}}"><i class="fa fa-users"></i> <span>Cuenta</span></a></li>
+						<li class="treeview"><a href="{{url('/billetera')}}"><i class="fa fa-users"></i> <span>Billeteras</span></a></li>
 						<li class="treeview"><a href="{{url('/movimiento')}}"><i class="fa fa-users"></i> <span>Movimientos</span></a></li>
-						<li class="treeview"><a href="{{url('/movimiento')}}"><i class="fa fa-users"></i> <span>Recarga</span></a></li>
+						
 					</ul>
 				</section>
 				<!-- /.sidebar -->

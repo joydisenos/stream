@@ -1,32 +1,28 @@
 <div class="tendencias">
     <div class="container">
-      <h4>Cámaras más populares</h4>
+      <h4 class="titulo-tendencia">Últimas cámaras registradas</h4>
       <div class="row">
         <div class="col">
           <ul>
-              <li><a href="#" class="tendencias">tendencia1</a></li>
-              <li><a href="#" class="tendencias">tendencia2</a></li>
-              <li><a href="#" class="tendencias">tendencia3</a></li>
-              <li><a href="#" class="tendencias">tendencia4</a></li>
-              <li><a href="#" class="tendencias">tendencia5</a></li>  
+              @foreach ($ultimas as $ultima)
+              <li><a class="btn-tendencia" href="{{ url('/camara/'. hashid()->encode($ultima->id)) }}">{{$ultima->name}}</a></li>
+              @endforeach
           </ul>
         </div>
         <div class="col">
           <ul>
-              <li><a href="#" class="tendencias">tendencia1</a></li>
-              <li><a href="#" class="tendencias">tendencia2</a></li>
-              <li><a href="#" class="tendencias">tendencia3</a></li>
-              <li><a href="#" class="tendencias">tendencia4</a></li>
-              <li><a href="#" class="tendencias">tendencia5</a></li>  
+
+            @foreach ($mujeres as $mujer)
+              <li><a class="btn-tendencia" href="{{ url('/camara/'. hashid()->encode($mujer->user->id)) }}">{{$mujer->user->name}}</a></li>
+            @endforeach
+              
           </ul>
         </div>
         <div class="col">
           <ul>
-              <li><a href="#" class="tendencias">tendencia1</a></li>
-              <li><a href="#" class="tendencias">tendencia2</a></li>
-              <li><a href="#" class="tendencias">tendencia3</a></li>
-              <li><a href="#" class="tendencias">tendencia4</a></li>
-              <li><a href="#" class="tendencias">tendencia5</a></li>  
+              @foreach ($hombres as $hombre)
+              <li><a class="btn-tendencia" href="{{ url('/camara/'. hashid()->encode($hombre->user->id)) }}">{{$hombre->user->name}}</a></li>
+            @endforeach
           </ul>
         </div>
       </div>

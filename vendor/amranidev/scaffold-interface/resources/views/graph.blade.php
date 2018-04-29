@@ -1,3 +1,4 @@
+@hasrole('dev')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,3 +65,4 @@
 	</div>
 </body>
 </html>
+@endhasrole

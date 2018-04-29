@@ -21,6 +21,16 @@ a:hover{
 	height: 200px;
 	background: #000000;
 	margin: 10px 0; 
+	transition: all ease .5s;
+	-webkit-transition: all ease .5s;
+	-moz-transition: all ease .5s;
+	-o-transition: all ease .5s;
+}
+.imagen:hover{
+	box-shadow: 0px 0px 15px #000000;
+	-webkit-box-shadow: 0px 0px 15px #000000;
+	-moz-box-shadow: 0px 0px 15px #000000;
+	-o-box-shadow: 0px 0px 15px #000000;
 }
 .numeros{
 	text-align: center;
@@ -48,9 +58,13 @@ a:hover{
 	padding: 10px;
 	margin: 5px;
 }
+.titulo-tendencia{
+	text-align: center;
+}
 footer{
 	border-top: solid medium #ececec;
 	padding: 10px;
+	background: #ececec;
 }
 .copy{
 	text-align: center;
@@ -91,4 +105,14 @@ footer{
 }
 .controles-chat{
 	margin: 20px 0;
+}
+.btn-tendencia{
+	transition: all ease .3s;
+	-webkit-transition: all ease .3s;
+	-moz-transition: all ease .3s;
+	-o-transition: all ease .3s;
+}
+.btn-tendencia:hover{
+	padding-left: 10px; 
+	color: red;
 }

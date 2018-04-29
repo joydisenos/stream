@@ -8,23 +8,25 @@
     <title> @yield('titulo') VIPescortsCR </title>
 </head>
 <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 <link rel="stylesheet" href="{{asset('css/style2.css')}}">
+<link rel="stylesheet" href="{{asset('css/animate.css')}}">
 
 <body>
     <div class="header1">
         <div class="container">
         	<div class="row">
         		<div class="col">
-        			<link rel="stylesheet" href="#">link1</link>
+        			<a href="#">link1</a>
         		</div>
         		<div class="col">
-        			<link rel="stylesheet" href="#">link1</link>
+        			<a href="#">link1</a>
         		</div>
         		<div class="col">
-        			<link rel="stylesheet" href="#">link1</link>
+        			<a href="#">link1</a>
         		</div>
         		<div class="col">
-        			<link rel="stylesheet" href="#">link1</link>
+        			<a href="#">link1</a>
         		</div>
         	</div>
         </div>
@@ -62,7 +64,7 @@
                                     
                                     @hasanyrole('dev|admin|superadmin')
 
-                                    <a href="{{url('/scaffold-dashboard')}}" class="dropdown-item nav-link">Panel de Control</a>
+                                    <a href="{{url('/dashboard')}}" class="dropdown-item nav-link">Panel de Control</a>
                                         
                                     @endhasanyrole
                                     <a href="{{url('/usuario')}}" class="dropdown-item nav-link">Perfil</a>
@@ -78,15 +80,15 @@
                                     
                                 </div>
                             </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="{{url('/transmitir')}}">Transmitir mi Cámara</a>
+                          </li>
                         @endguest
 
 
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Videos <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Categorías</a>
-                  </li>
+                  
+
+                  
 
                   
             </ul>
