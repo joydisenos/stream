@@ -63,7 +63,7 @@ class DatoController extends Controller
         
         $dato->user_id = $request->user_id;
 
-        
+
         $dato->biografia = $request->biografia;
 
         
@@ -151,7 +151,19 @@ class DatoController extends Controller
      */
     public function actualizar($id,Request $request)
     {
+        if ($request->hasFile('foto_perfil')) 
+        {
+        $file = $request->file('foto_perfil');
+        $nombre = $file->getClientOriginalName();
+        \Storage::disk('public')->put($nombre,  \File::get($file));
+        }
+
         $dato = Dato::findOrfail($id);
+        if ($request->hasFile('foto_perfil')) 
+
+        {
+        $dato->foto_perfil = $nombre;
+        }
     	
         $dato->user_id = $request->user_id;
         

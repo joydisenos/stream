@@ -39,7 +39,9 @@ Zona de Usuarios
 					<div class="col">
                   <a href="{{ url('/camara/'. hashid()->encode($camara->id)) }}">
                     
-                    <div class="imagen"></div>
+                    <div class="imagen">
+                    	<img src="{{asset('storage').'/'.$camara->dato->foto_perfil}}" class="imgcam">
+                    </div>
                     <div class="titulo-img">{{ $camara->name }}</div>
 
                   </a>
@@ -62,7 +64,9 @@ Zona de Usuarios
 
 		<table class="table table-hover">
 			<tr>	
-				<td></td>
+				<td>
+					<img src="{{asset('storage').'/'.Auth::user()->dato->foto_perfil}}" class="fotoperfil" alt="Foto de perfil {{Auth::user()->name}}">
+				</td>
 				<td>
 					<a class="btn btn-primary" href="{{url('/dato').'/'.Auth::user()->dato->id}}">Actualizar</a>
 				</td>
@@ -98,12 +102,33 @@ Zona de Usuarios
 		<div class="row">
 			<div class="col">Agregar Fotos</div>
 			<div class="col">
-				<form action="">
-				<input type="file">
+				<form action="{{url('foto/guardar')}}" method="post" enctype="multipart/form-data">
+				<input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
+				<input type="file" name="url" id="url">
 				<button class="btn btn-primary" type="submit">Subir</button>
 				</form>
 			</div>
 		</div>
+		
+		@foreach(Auth::user()->foto->chunk(3) as $row)
+				
+				<div class="row">
+					@foreach($row as $foto)
+					<div class="col-md-4">
+                  <a href="{{ url('storage').'/'.$foto->url }}">
+                    
+                    <div class="imagen">
+                    	<img src="{{ url('storage').'/'.$foto->url }}" class="imgcam">
+                    </div>
+                    <div class="titulo-img">{{ $camara->name }}</div>
+
+                  </a>
+                </div>
+					@endforeach
+				</div>
+	
+			@endforeach
+
 
 	  </div>
 

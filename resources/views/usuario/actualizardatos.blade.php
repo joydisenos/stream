@@ -16,10 +16,22 @@ Zona de Usuarios
    
    
     <form method = 'POST' action = '{!! url("dato")!!}/{!!$dato->
-        id!!}/actualizar'> 
+        id!!}/actualizar' enctype="multipart/form-data"> 
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
         <input id="user_id" name = "user_id" type="hidden" class="form-control" value="{!!$dato->
             user_id!!}"> 
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                <label for="foto_perfil">Foto de Perfil</label>
+            <input type="file" id="foto_perfil" name="foto_perfil" class="form-control">
+            </div>
+            <div class="col">
+                <img src="{{asset('/storage').'/'.$dato->foto_perfil}}" alt="Foto de perfil {{$dato->user->name}}" class="fotoperfil">
+            </div>
+            </div>
+        </div>
      
         <div class="form-group">
             <label for="biografia">Biografía</label>

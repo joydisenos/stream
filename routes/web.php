@@ -66,8 +66,9 @@ Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
 });
 
 //foto Routes
-Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
+Route::group(['middleware'=> 'auth'],function(){
   Route::resource('foto','\App\Http\Controllers\FotoController');
+  Route::post('foto/guardar','\App\Http\Controllers\FotoController@store');
   Route::post('foto/{id}/update','\App\Http\Controllers\FotoController@update');
   Route::get('foto/{id}/delete','\App\Http\Controllers\FotoController@destroy');
   Route::get('foto/{id}/deleteMsg','\App\Http\Controllers\FotoController@DeleteMsg');

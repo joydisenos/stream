@@ -1,6 +1,18 @@
 a:hover{
 	text-decoration: none!important;
 }
+.logo-pri{
+	max-height: 100px;
+	padding: 0!important;
+	margin: 0!important;
+}
+.logop{
+	width: 195px;
+	height: 50px;
+	overflow: hidden;
+	background: center center no-repeat;
+	background-size: 180px 95px;
+}
 .tags{
 	padding: 10px;
 }
@@ -17,10 +29,16 @@ a:hover{
 .elementos{
 	margin: 20px 0;
 }
+.imgcam{
+	min-width: 100%;
+	min-height: 100%;
+	width:100%;
+}
 .imagen{
 	height: 200px;
-	background: #000000;
 	margin: 10px 0; 
+	overflow: hidden;
+	background-position: center center;
 	transition: all ease .5s;
 	-webkit-transition: all ease .5s;
 	-moz-transition: all ease .5s;
@@ -115,4 +133,8 @@ footer{
 .btn-tendencia:hover{
 	padding-left: 10px; 
 	color: red;
+}
+.fotoperfil{
+	max-width: 100px;
+	max-height: 100px;
 }

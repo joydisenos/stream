@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Foto;
 use Amranidev\Ajaxis\Ajaxis;
+use Illuminate\Support\Facades\Auth;
 use URL;
 
 /**
@@ -55,35 +56,35 @@ class FotoController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $file = $request->file('url');
+        $nombre = $file->getClientOriginalName();
+        \Storage::disk('public')->put($nombre,  \File::get($file));
+        
+
+
         $foto = new Foto();
 
         
-        $foto->url = $request->url;
+        $foto->url = $nombre;
+
+                
+        $foto->tags = Auth::user()->dato->sexo;
 
         
-        $foto->tags = $request->tags;
+        $foto->user_id = Auth::user()->id;
 
         
-        $foto->user_id = $request->user_id;
-
-        
-        $foto->titulo = $request->titulo;
+        $foto->titulo = 'Galería de Foto'.Auth::user()->name;
 
         
         
         $foto->save();
 
-        $pusher = App::make('pusher');
+       
 
-        //default pusher notification.
-        //by default channel=test-channel,event=test-event
-        //Here is a pusher notification example when you create a new resource in storage.
-        //you can modify anything you want or use it wherever.
-        $pusher->trigger('test-channel',
-                         'test-event',
-                        ['message' => 'A new foto has been created !!']);
-
-        return redirect('foto');
+        return redirect('usuario');
     }
 
     /**
@@ -147,7 +148,7 @@ class FotoController extends Controller
         
         $foto->save();
 
-        return redirect('foto');
+        return redirect('usuario');
     }
 
     /**
