@@ -11,16 +11,11 @@
 	
 
 	
-        <div class="pure-u-1-5">
-        <div id="l-video"></div>
-    </div>
-    <div class="pure-u-4-5" id="r-video"></div>
+        
     
-        <div id="remotesVideos"></div>
-
-
-	<div class="row">
-		<div class="col-md-8">
+    
+  <div class="row">
+	<div class="col-md-8 bg-gray">
 			
 <div class="embed-responsive embed-responsive-4by3">
   <video class="video embed-responsive-item" id="camera-stream"></video>
@@ -38,17 +33,34 @@
 	<div class="row">
 		<div class="col-md-8">
 			
+			<!--
 			<div class="d-flex justify-content-between">
-			
-			
 			<button class="btn btn-primary">Iniciar Show Privado</button>
 			<button class="btn btn-primary">Seguir</button>
 			<button class="btn btn-outline-primary">Me gusta</button>
 			<button class="btn btn-primary">Comprar Créditos</button>
+			-->
+			
+			<div class="row">
+				<div class="col">
+				Show Privado
 			</div>
-		</div>
+			<div class="col">
+				Seguir
+			</div>
+			<div class="col">
+				Me gusta
+			</div>
+			<div class="col">
+				Comprar Créditos
+			</div>
+			</div>
+
+			</div>
+		
 		<div class="col-md-4">
 			<input type="text" class="form-control" placeholder="Escriba aquí...">
+		</div>
 		</div>
 	</div>
 	</div>
@@ -113,9 +125,17 @@
 	  </div>
 	  <div class="tab-pane fade" id="fotos" role="tabpanel" aria-labelledby="fotos-tab">
 
-		@if(!$user->fotos)
-		<h2>No se han agregado Fotografías de este perfil</h2>
-		@endif
+		@foreach ($user->foto->chunk(3) as $row)
+		<div class="row">
+			@foreach ($row as $foto)
+			<div class="col-md-4">
+				<div class="imagen">
+					<img src="{{asset('storage').'/'.$foto->url}}" class="d-inline-block align-top" width="100%" alt="">
+				</div>
+			</div>
+			@endforeach
+		</div>
+		@endforeach
 
 	  </div>
 	</div>

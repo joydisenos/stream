@@ -52,10 +52,12 @@
                 <div class="col-md-4">
                   <a href="{{ url('/camara/'. hashid()->encode($camara->id)) }}">
                     
-                    <div class="imagen">
+                    <div class="camarawrap">
+                      <div class="imagen">
                       <img src="{{asset('storage').'/'.$camara->dato->foto_perfil}}" class="imgcam">
                     </div>
                     <div class="titulo-img">{{ $camara->name }}</div>
+                    </div>
 
                   </a>
                 </div>
