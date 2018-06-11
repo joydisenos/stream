@@ -43,7 +43,7 @@ class HomeController extends Controller
 
         $dato->biografia = 'vacio';
 
-        $dato->foto_perfil = 'vacio';
+        $dato->foto_perfil = 'def-escort.jpg';
 
         $dato->nacimiento_ano = 'vacio';
 

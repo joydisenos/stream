@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\User;
 use App\Dato;
 use ElfSundae\Laravel\Hashid\Facades\Hashid;
+
 
 class CamController extends Controller
 {
@@ -74,6 +76,17 @@ class CamController extends Controller
         $user = User::findOrFail($id_deco[0]);
 
         return view('camara', compact('user','id'));
+    }
+
+    public function detalles($id)
+    {
+        $id_deco = Hashid::decode($id);
+
+        $user = User::findOrFail($id_deco[0]);
+
+
+        return view('detalles', compact('user','id'));
+
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('layouts.frontui')
 
 @section('titulo')
 
@@ -23,11 +23,16 @@ Zona de Usuarios
 
         <div class="form-group">
             <div class="row">
-                <div class="col">
-                <label for="foto_perfil">Foto de Perfil</label>
-            <input type="file" id="foto_perfil" name="foto_perfil" class="form-control">
+                <div class="col s6 file-field input-field">
+                <div class="btn blue darken-4">
+                    <span>Foto de Perfil</span>
+                    <input type="file" id="foto_perfil" name="foto_perfil" class="form-control">
+                </div>
+                <div class="file-path-wrapper">
+                     <input class="file-path validate" type="text">
+                </div>
             </div>
-            <div class="col">
+            <div class="col s6">
                 <img src="{{asset('/storage').'/'.$dato->foto_perfil}}" alt="Foto de perfil {{$dato->user->name}}" class="fotoperfil">
             </div>
             </div>
@@ -70,7 +75,7 @@ Zona de Usuarios
                 <option value="sp">Sin Preferencia</option>
             </select> 
         </div>
-        <button class = 'btn btn-success' type ='submit'><i class="fa fa-floppy-o"></i> Actualizar</button>
+        <button class = 'waves-effect blue waves-light btn btn-success' type ='submit'><i class="fa fa-floppy-o"></i> Actualizar</button>
     </form>
 </section>
 @endsection

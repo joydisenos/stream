@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('layouts.frontui')
 
 @section('titulo')
 
@@ -7,8 +7,8 @@ Zona de Usuarios
 @endsection
 
 @section('content')
-<div class="bg-gray text-center">
-        <h3>
+<div class="gray text-center">
+    <h3>
         Comprar Créditos
     </h3>
    </div>
@@ -21,7 +21,7 @@ Zona de Usuarios
        
         <div class="form-group">
             <label for="cantidad">Cantidad a solicitar</label>
-            <input id="cantidad" name = "cantidad" type="text" class="form-control">
+            <input id="cantidad" name = "cantidad" type="text" class="form-control" required>
         </div>
       
            
@@ -29,9 +29,9 @@ Zona de Usuarios
        
         <div class="form-group">
             <label for="numero_trans">Número de Transacción o Detalles</label>
-            <textarea id="numero_trans" name = "numero_trans"  class="form-control"> </textarea>
+            <textarea id="numero_trans" name = "numero_trans"  class="form-control" required> </textarea>
         </div>
-        <button class = 'btn btn-success' type ='submit'> <i class="fa fa-floppy-o"></i> Enviar Comprobante</button>
+        <button class = 'waves-effect blue waves-light btn btn-success' type ='submit'> <i class="fa fa-floppy-o"></i> Enviar Comprobante</button>
     </form>
 </section>
 @endsection

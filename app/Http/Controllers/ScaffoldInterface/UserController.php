@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['role:superadmin|admin|dev']);
+        $this->middleware('web');
     }
     
     public function index()

@@ -9,6 +9,7 @@ use App\Foto;
 use Amranidev\Ajaxis\Ajaxis;
 use Illuminate\Support\Facades\Auth;
 use URL;
+use ElfSundae\Laravel\Hashid\Facades\Hashid;
 
 /**
  * Class FotoController.
@@ -126,6 +127,17 @@ class FotoController extends Controller
         return view('foto.edit',compact('title','foto'  ));
     }
 
+    public function vision($id , $estatus)
+    {
+
+        $id_deco = Hashid::decode($id);
+        $foto = Foto::findOrfail($id_deco[0]);
+        $foto->publico = $estatus;
+        $foto->save();
+
+        return redirect()->back()->with('status','cambio de visibilidad exitoso');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -135,6 +147,7 @@ class FotoController extends Controller
      */
     public function update($id,Request $request)
     {
+
         $foto = Foto::findOrfail($id);
     	
         $foto->url = $request->url;
@@ -178,6 +191,6 @@ class FotoController extends Controller
     {
      	$foto = Foto::findOrfail($id);
      	$foto->delete();
-        return URL::to('foto');
+        return redirect()->back()->with('status','Foto Eliminada');
     }
 }

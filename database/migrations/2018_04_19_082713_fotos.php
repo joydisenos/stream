@@ -29,6 +29,8 @@ class Fotos extends Migration
         $table->biginteger('user_id');
         
         $table->String('titulo');
+
+        $table->integer('publico')->default(1);
         
         /**
          * Foreignkeys section

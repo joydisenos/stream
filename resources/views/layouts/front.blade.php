@@ -11,33 +11,15 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 <link rel="stylesheet" href="{{asset('css/style2.css')}}">
 <link rel="stylesheet" href="{{asset('css/animate.css')}}">
+<script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
 
 <body>
-    <div class="header1">
-        <div class="container">
-        	<div class="row">
-        		<div class="col">
-        			<a href="#">link1</a>
-        		</div>
-        		<div class="col">
-        			<a href="#">link1</a>
-        		</div>
-        		<div class="col">
-        			<a href="#">link1</a>
-        		</div>
-        		<div class="col">
-        			<a href="#">link1</a>
-        		</div>
-        	</div>
-        </div>
-    </div>
-
-    
+        
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-gray">
 <div class="container">
     	      <a class="navbar-brand" href="{{url('/')}}">
-                <img src="{{asset('storage')}}/logo.svg" class="logo-pri" alt="">
+                <img src="{{asset('storage')}}/logo-vipescortscr.png" class="logo-pri" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -59,7 +41,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ title_case(Auth::user()->name) }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu nav-item" aria-labelledby="navbarDropdown">
@@ -83,7 +65,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="{{url('/transmitir')}}">Transmitir mi Cámara</a>
+                            <a class="nav-link" href="{{url('/camara').'/'.hashid()->encode(Auth::user()->id)}}">Transmitir mi Cámara</a>
                           </li>
                         @endguest
 
@@ -230,6 +212,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/principal.js')}}"></script>
 </body>
 
 </html>

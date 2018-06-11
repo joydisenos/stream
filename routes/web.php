@@ -11,12 +11,14 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', 'CamController@index');
 Route::get('/filtrar/{filtro}', 'CamController@filtrar');
 
-Auth::routes();
-
 Route::resource('camara', 'CamController');
+
+Route::get('/detalles/{id}', 'CamController@detalles');
 
 
 Route::group(['middleware'=> 'auth'],function(){
@@ -28,6 +30,9 @@ Route::get('/comprar','MovimientoController@comprar');
 Route::post('/comprar','MovimientoController@store');
 
 Route::get('/movimientos', 'MovimientoController@listausuario');
+
+Route::get('/usuario/cambiar/{id}/{estatus}', 'FotoController@vision');
+
 
 });
 

@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('layouts.frontui')
 
 @section('titulo')
 
@@ -27,9 +27,9 @@ Zona de Usuarios
             <td>{{hashid()->encode($movimiento->id)}}</td>
     		<td>{{$movimiento->cantidad}}</td>
     		@if($movimiento->transaccion = 'compra')
-    		<td class="bg-success" style="color:#ffffff">Abono: Valor Créditos</td>
+    		<td class="green" style="color:#ffffff">Abono: Valor Créditos</td>
     		@elseif($movimiento->transaccion = 'gasto')
-    		<td class="bg-danger" style="color:#ffffff">Gasto: Cantidad Créditos</td>
+    		<td class="red" style="color:#ffffff">Gasto: Cantidad Créditos</td>
     		@endif
 
             
