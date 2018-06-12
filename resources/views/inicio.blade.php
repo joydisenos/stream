@@ -6,16 +6,16 @@
           <div class="row">
             @foreach ($row as $camara)
                 <div class="col m4 s12 center-align">
-                  <a href="{{ url('/camara/'. hashid()->encode($camara->id)) }}">
+                  <a href="{{ url('/camara/'. hashid()->encode($camara->user->id)) }}">
                     
                     <div class="camarawrap">
 
                     <div class="imagen">
-                      <img src="{{asset('storage').'/'.$camara->dato->foto_perfil}}" class="imgcam responsive-img">
+                      <img src="{{asset('storage').'/'.$camara->foto_perfil}}" class="imgcam responsive-img">
 
                       	<div class="valign-wrapper hover-name">	
 								
-								<h4 class="center-align">{{title_case($camara->name)}}</h4>
+								<h4 class="center-align">{{title_case($camara->user->name)}}</h4>
 						
                     	</div>
                     </div>

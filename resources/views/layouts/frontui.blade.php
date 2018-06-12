@@ -47,8 +47,18 @@
       
       @else
       
-      	<li>
-          <a href="{{url('usuario')}}">Bienvenido, {{title_case(Auth::user()->name)}}</a>
+      	<li class="white">
+          <a href="{{url('usuario')}}" class="blue-text text-darken-4 z-depth-2"> 
+          @if(Auth::user()->dato->sexo == 'hombre')
+          Bienvenido,
+          @elseif(Auth::user()->dato->sexo == 'mujer')
+          Bienvenida,
+          @elseif(Auth::user()->dato->sexo == 'pareja')
+          Bienvenidos,
+          @else
+          Bienvenido,
+          @endif
+           {{title_case(Auth::user()->name)}}</a>
         </li>
          <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -115,6 +125,7 @@
     $('.sidenav').sidenav();
     $('.materialboxed').materialbox();
     $('.tabs').tabs();
+    $('.tap-target').tapTarget();
 
   });
 </script>

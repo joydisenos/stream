@@ -241,4 +241,19 @@ class DatoController extends Controller
 
         return redirect('perfil');
     }
+
+    public function afiliar()
+    {
+        return view('afiliar');
+    }
+
+    public function afiliar_solicitud(Request $request)
+    {
+        
+    }
+
+    public function citas()
+    {
+
+    }
 }

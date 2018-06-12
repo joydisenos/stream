@@ -53,6 +53,8 @@ class HomeController extends Controller
 
         $dato->interes = 'vacio';
 
+        $dato->detalles_cita = 'vacio';
+
         $dato->save();
 
         

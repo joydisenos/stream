@@ -50,6 +50,7 @@ return array(
     'Amranidev\\ScaffoldInterface\\Scaffold' => $vendorDir . '/amranidev/scaffold-interface/src/Scaffold.php',
     'Amranidev\\ScaffoldInterface\\ScaffoldInterfaceServiceProvider' => $vendorDir . '/amranidev/scaffold-interface/src/ScaffoldInterfaceServiceProvider.php',
     'App\\Billetera' => $baseDir . '/app/Billetera.php',
+    'App\\Cita' => $baseDir . '/app/Cita.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Dato' => $baseDir . '/app/Dato.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',

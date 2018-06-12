@@ -63,6 +63,15 @@ Zona de Usuarios
 				</td>
 				<td>
 					<a class="btn waves-effect waves-light red" href="{{url('/dato').'/'.Auth::user()->dato->id}}">Actualizar</a>
+					@if(Auth::user()->dato->afiliado == 0)
+					<a class="btn waves-effect waves-light red" href="{{url('/afiliar')}}">Afiliarse</a>
+					@elseif(Auth::user()->dato->afiliado == 1)
+					En espera por aprobación de afiliación
+					@elseif(Auth::user()->dato->afiliado == 2)
+					<a class="btn waves-effect waves-light red" href="#">Transmitir Cámara</a>
+					@endif
+
+
 				</td>
 			</tr>
 			<tr>
@@ -119,7 +128,7 @@ Zona de Usuarios
 				
 				<div class="row">
 					@foreach($row as $foto)
-					<div class="col m4">
+					<div class="col m4 s12">
                   
                     
                     <div class="imagen">
@@ -144,9 +153,9 @@ Zona de Usuarios
 
     <table class="table table-hover" >
 			<tr>
-				<td>Créditos Disponibles:</td>
+				<td><h4>Créditos Disponibles:</h4></td>
 				<td>
-					<h2>{{Auth::user()->billetera->disponible}}</h2>
+					<h4>{{Auth::user()->billetera->disponible}}</h4>
 				</td>
 			</tr>
 			<tr>

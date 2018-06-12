@@ -5,7 +5,7 @@
         <div class="col m4">
           <ul>
               @foreach ($ultimas as $ultima)
-              <li><a class="btn-tendencia" href="{{ url('/camara/'. hashid()->encode($ultima->id)) }}">{{title_case($ultima->name)}}</a></li>
+              <li><a class="btn-tendencia" href="{{ url('/camara/'. hashid()->encode($ultima->user->id)) }}">{{title_case($ultima->user->name)}}</a></li>
               @endforeach
           </ul>
         </div>

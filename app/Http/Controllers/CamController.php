@@ -20,19 +20,19 @@ class CamController extends Controller
     {
         // configurar con socket para listar en tiempo real
 
-        $camaras= User::paginate(12);
-        $ultimas = User::orderBy('created_at','DESC')->take(5)->get();
-        $hombres = Dato::orderBy('created_at','DESC')->where('sexo','=','hombre')->take(5)->get();
-        $mujeres = Dato::orderBy('created_at','DESC')->where('sexo','=','mujer')->take(5)->get();
+        $camaras= Dato::where('afiliado' ,'=', 2)->paginate(12);
+        $ultimas = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->take(5)->get();
+        $hombres = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where('sexo','=','hombre')->take(5)->get();
+        $mujeres = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where('sexo','=','mujer')->take(5)->get();
 
         return view('inicio', compact('camaras','ultimas','hombres','mujeres'));
     }
     public function filtrar ($filtro)
     {
-        $camaras = Dato::orderBy('created_at','DESC')->where('sexo','=', $filtro )->paginate(12);
-        $ultimas = User::orderBy('created_at','DESC')->take(5)->get();
-        $hombres = Dato::orderBy('created_at','DESC')->where('sexo','=','hombre')->take(5)->get();
-        $mujeres = Dato::orderBy('created_at','DESC')->where('sexo','=','mujer')->take(5)->get();
+        $camaras = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where('sexo','=', $filtro )->paginate(12);
+        $ultimas = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->take(5)->get();
+        $hombres = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where('sexo','=','hombre')->take(5)->get();
+        $mujeres = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where('sexo','=','mujer')->take(5)->get();
 
 
 

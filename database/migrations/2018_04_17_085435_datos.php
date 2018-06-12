@@ -35,6 +35,21 @@ class Datos extends Migration
         $table->String('localidad');
         
         $table->String('interes');
+
+        $table->integer('afiliado')->default(0);
+
+        $table->float('precio_cam_sesion')->default(0);
+
+        $table->float('precio_cam_hora')->default(0);
+
+        $table->integer('citas')->default(0);
+
+        $table->float('precio_cita_hora')->default(0);
+
+        $table->float('precio_cita_dia')->default(0);
+
+        $table->longText('detalles_cita');
+
         
         /**
          * Foreignkeys section

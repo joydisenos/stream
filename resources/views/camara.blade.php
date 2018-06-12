@@ -44,7 +44,15 @@
 
 				<div class="row">
             <div class="col m3 s12">
+              @guest
+              <a href="{{url('login')}}" class="waves-effect blue waves-light btn">Iniciar Sesión</a>
+              @else
+              @if(Auth::user()->id == $user->id)
               <a href="#" class="waves-effect blue waves-light btn">Show Privado</a>
+              @else
+              <a href="#" class="waves-effect blue waves-light btn">Ingresar Privado</a>
+              @endif
+              @endguest
             </div>
         
           
@@ -64,10 +72,35 @@
 			</div>
 		
 		<div class="col m4">
-		
-		
+		@guest
+    @else
+     @if($user->dato->citas == 1) 
+      <a class="btn-floating btn-large red pulse left" onclick="$('.tap-target').tapTarget('open')"><i class="material-icons">assignment_ind</i></a>
+      @else
+      @endif
+    @endguest
 		</div>
 	</div>
+
+
+@guest
+@else
+ @if($user->dato->citas == 1) 
+  <div class="fix-btn" style="position:fixed;right:20px;bottom:10px;z-index: 1000;">
+     <!-- Element Showed -->
+  <a id="assignment_ind" class="waves-effect waves-light btn-large btn-floating red pulse z-depth-3" onclick="$('.tap-target').tapTarget('open')"><i class="material-icons">assignment_ind</i></a>
+  <!-- Tap Target Structure -->
+  <div class="tap-target white-text" data-target="assignment_ind">
+    <div class="tap-target-content">
+      <h5>Hola, {{title_case(Auth::user()->name)}}</h5>
+      <p>Te gustaría tener una cita con {{title_case($user->name)}}? @if($user->dato->sexo == 'hombre')El @elseif($user->dato->sexo == 'mujer') Ella@elseif($user->dato->sexo == 'pareja')Ellos @else @endif se encuentra disponible para agendar una cita</p>
+      <a href="#" class="waves-effect waves-dark btn white black-text">Solicitar</a>
+    </div>
+  </div>
+  </div>
+  @else
+  @endif
+@endguest
 
 
   <div class="row">
@@ -112,7 +145,6 @@
       @endif
     </div>
   </div>
-
 
 
 

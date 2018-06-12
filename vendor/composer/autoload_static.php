@@ -470,6 +470,7 @@ class ComposerStaticInit56aec4d9b83a78066eeff1cee7e44d01
         'Amranidev\\ScaffoldInterface\\Scaffold' => __DIR__ . '/..' . '/amranidev/scaffold-interface/src/Scaffold.php',
         'Amranidev\\ScaffoldInterface\\ScaffoldInterfaceServiceProvider' => __DIR__ . '/..' . '/amranidev/scaffold-interface/src/ScaffoldInterfaceServiceProvider.php',
         'App\\Billetera' => __DIR__ . '/../..' . '/app/Billetera.php',
+        'App\\Cita' => __DIR__ . '/../..' . '/app/Cita.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Dato' => __DIR__ . '/../..' . '/app/Dato.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',

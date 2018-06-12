@@ -21,6 +21,8 @@ Route::resource('camara', 'CamController');
 Route::get('/detalles/{id}', 'CamController@detalles');
 
 
+
+
 Route::group(['middleware'=> 'auth'],function(){
 
 Route::get('/usuario', 'HomeController@index');
@@ -32,6 +34,8 @@ Route::post('/comprar','MovimientoController@store');
 Route::get('/movimientos', 'MovimientoController@listausuario');
 
 Route::get('/usuario/cambiar/{id}/{estatus}', 'FotoController@vision');
+
+Route::get('/afiliar', 'DatoController@afiliar');
 
 
 });
