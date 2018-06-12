@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace GrahamCampbell\Manager;
 
+use Closure;
 use Illuminate\Contracts\Config\Repository;
 use InvalidArgumentException;
 
@@ -33,14 +34,14 @@ abstract class AbstractManager implements ManagerInterface
     /**
      * The active connection instances.
      *
-     * @var array
+     * @var object[]
      */
     protected $connections = [];
 
     /**
      * The custom connection resolvers.
      *
-     * @var array
+     * @var callable[]
      */
     protected $extensions = [];
 
@@ -109,7 +110,7 @@ abstract class AbstractManager implements ManagerInterface
      *
      * @param array $config
      *
-     * @return mixed
+     * @return object
      */
     abstract protected function createConnection(array $config);
 
@@ -118,7 +119,7 @@ abstract class AbstractManager implements ManagerInterface
      *
      * @param string $name
      *
-     * @return mixed
+     * @return object
      */
     protected function makeConnection(string $name)
     {
@@ -200,7 +201,11 @@ abstract class AbstractManager implements ManagerInterface
      */
     public function extend(string $name, callable $resolver)
     {
-        $this->extensions[$name] = $resolver;
+        if ($resolver instanceof Closure) {
+            $this->extensions[$name] = $resolver->bindTo($this, $this);
+        } else {
+            $this->extensions[$name] = $resolver;
+        }
     }
 
     /**
