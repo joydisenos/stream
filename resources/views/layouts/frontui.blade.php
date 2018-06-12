@@ -126,6 +126,8 @@
     $('.materialboxed').materialbox();
     $('.tabs').tabs();
     $('.tap-target').tapTarget();
+    $('select').formSelect();
+    $('.modal').modal();
 
   });
 </script>

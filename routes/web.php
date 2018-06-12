@@ -20,6 +20,8 @@ Route::resource('camara', 'CamController');
 
 Route::get('/detalles/{id}', 'CamController@detalles');
 
+Route::post('/solicitarcita', 'DatoController@citas');
+
 
 
 
@@ -36,19 +38,20 @@ Route::get('/movimientos', 'MovimientoController@listausuario');
 Route::get('/usuario/cambiar/{id}/{estatus}', 'FotoController@vision');
 
 Route::get('/afiliar', 'DatoController@afiliar');
+Route::post('/afiliar', 'DatoController@afiliar_solicitud');
 
 
 });
 
 //abono
 
-Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
+Route::group(['middleware'=> 'auth'],function(){
 Route::get('/abonar/{id}','BilleteraController@aprobar');
 Route::get('/negar/{id}','BilleteraController@negar');
 });
 
 //dato Routes
-Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
+Route::group(['middleware'=> 'auth'],function(){
   Route::resource('dato','\App\Http\Controllers\DatoController');
   Route::post('dato/{id}/update','\App\Http\Controllers\DatoController@update');
   Route::get('dato/{id}/delete','\App\Http\Controllers\DatoController@destroy');
@@ -60,14 +63,14 @@ Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
 });
 
 //movimiento Routes
-Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
+Route::group(['middleware'=> 'auth'],function(){
   Route::resource('movimiento','\App\Http\Controllers\MovimientoController');
   Route::post('movimiento/{id}/update','\App\Http\Controllers\MovimientoController@update');
   Route::get('movimiento/{id}/delete','\App\Http\Controllers\MovimientoController@destroy');
   Route::get('movimiento/{id}/deleteMsg','\App\Http\Controllers\MovimientoController@DeleteMsg');
 });
 //billetera Routes
-Route::group(['middleware'=> ['role:admin|superadmin|dev']],function(){
+Route::group(['middleware'=> 'auth'],function(){
   Route::resource('billetera','\App\Http\Controllers\BilleteraController');
   Route::post('billetera/{id}/update','\App\Http\Controllers\BilleteraController@update');
   Route::get('billetera/{id}/delete','\App\Http\Controllers\BilleteraController@destroy');
@@ -81,4 +84,13 @@ Route::group(['middleware'=> 'auth'],function(){
   Route::post('foto/{id}/update','\App\Http\Controllers\FotoController@update');
   Route::get('foto/{id}/delete','\App\Http\Controllers\FotoController@destroy');
   Route::get('foto/{id}/deleteMsg','\App\Http\Controllers\FotoController@DeleteMsg');
+});
+
+
+//Afiliados y citas Routes
+Route::group(['middleware'=> 'auth'],function(){
+  
+  Route::get('/afiliados','AdminController@afiliados');
+  Route::get('/afiliar/{id}','AdminController@afiliar');
+  Route::get('/citas','AdminController@citas');
 });

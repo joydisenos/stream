@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Dato;
+use App\Cita;
 use Amranidev\Ajaxis\Ajaxis;
 use Illuminate\Support\Facades\Auth;
 use URL;
@@ -151,6 +152,7 @@ class DatoController extends Controller
      */
     public function actualizar($id,Request $request)
     {
+
         if ($request->hasFile('foto_perfil')) 
         {
         $file = $request->file('foto_perfil');
@@ -176,6 +178,35 @@ class DatoController extends Controller
         $dato->localidad = $request->localidad;
         
         $dato->interes = $request->interes;
+
+        if($dato->afiliado == 2)
+        {
+            $dato->precio_cam_sesion = $request->precio_cam_sesion;
+
+            $dato->precio_cam_hora = $request->precio_cam_hora;
+        
+            if($request->citas)
+             {
+                $dato->citas = $request->citas;
+             }else{
+                $dato->citas = 0;
+             }
+        
+            if($request->precio_cita_hora != null)
+             {
+                $dato->precio_cita_hora = $request->precio_cita_hora;
+            }
+        
+            if($request->precio_cita_dia != null)
+            {
+                $dato->precio_cita_dia = $request->precio_cita_dia;
+             }
+
+            if($request->detalles_cita != null)
+            {
+                $dato->detalles_cita = $request->detalles_cita;
+            }
+        }
         
         
         $dato->save();
@@ -249,11 +280,58 @@ class DatoController extends Controller
 
     public function afiliar_solicitud(Request $request)
     {
+
+
+      
+        $id = Auth::user()->id;
+
+        $dato = Dato::findOrFail($id);
+
+        $dato->afiliado = 1;
+
+        $dato->precio_cam_sesion = $request->precio_cam_sesion;
+
+        $dato->precio_cam_hora = $request->precio_cam_hora;
+        
+        if($request->citas)
+        {
+                $dato->citas = $request->citas;
+        }
+        
+        if($request->precio_cita_hora != null)
+        {
+                $dato->precio_cita_hora = $request->precio_cita_hora;
+        }
+        
+        if($request->precio_cita_dia != null)
+        {
+                $dato->precio_cita_dia = $request->precio_cita_dia;
+        }
+
+        if($request->detalles_cita != null)
+        {
+                $dato->detalles_cita = $request->detalles_cita;
+        }
+
+        $dato->save();
+
+        return redirect('usuario')->with('status','Su Solicitud será procesada en breve nos comunicaremos para confirmar su afiliación');
+
+
         
     }
 
-    public function citas()
+    public function citas(Request $request)
     {
+
+        $cita = new Cita();
+        $cita->user_id = $request->user_id;
+        $cita->email = $request->email;
+        $cita->detalles = $request->detalles;
+        $cita->estatus = 1;
+        $cita->save();
+
+        return redirect()->back()->with('status','Solicitud Realizada correctamente, nos contactaremos con usted para procesar su requerimiento');
 
     }
 }

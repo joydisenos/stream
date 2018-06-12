@@ -29,16 +29,16 @@ Zona de Usuarios
           <div class="row">
             @foreach ($row as $camara)
                 <div class="col m4 center-align">
-                  <a href="{{ url('/camara/'. hashid()->encode($camara->id)) }}">
+                  <a href="{{ url('/camara/'. hashid()->encode($camara->user->id)) }}">
                     
                     <div class="camarawrap">
 
                     <div class="imagen">
-                      <img src="{{asset('storage').'/'.$camara->dato->foto_perfil}}" class="imgcam responsive-img">
+                      <img src="{{asset('storage').'/'.$camara->foto_perfil}}" class="imgcam responsive-img">
 
                       	<div class="valign-wrapper hover-name">	
 								
-								<h4 class="center-align">{{title_case($camara->name)}}</h4>
+								<h4 class="center-align">{{title_case($camara->user->name)}}</h4>
 						
                     	</div>
                     </div>
@@ -68,7 +68,7 @@ Zona de Usuarios
 					@elseif(Auth::user()->dato->afiliado == 1)
 					En espera por aprobación de afiliación
 					@elseif(Auth::user()->dato->afiliado == 2)
-					<a class="btn waves-effect waves-light red" href="#">Transmitir Cámara</a>
+					<a class="btn waves-effect waves-light red" href="{{url('camara').'/'.hashid()->encode(Auth::user()->id)}}">Transmitir Cámara</a>
 					@endif
 
 
@@ -94,6 +94,37 @@ Zona de Usuarios
 				<td>Interés:</td>
 				<td>{{Auth::user()->dato->interes}}</td>
 			</tr>
+			@if(Auth::user()->dato->afiliado == 2)
+			<tr>
+				<td>Precio de Cam por Sesión:</td>
+				<td>{{Auth::user()->dato->precio_cam_sesion}}</td>
+			</tr>
+
+			<tr>
+				<td>Precio de Cam por hora:</td>
+				<td>{{Auth::user()->dato->precio_cam_hora}}</td>
+			</tr>
+
+			<tr>
+				<td>Citas:</td>
+				<td>@if(Auth::user()->dato->citas == 1)Activado @else No seleccionado @endif</td>
+			</tr>
+
+			<tr>
+				<td>Precio de Cita por Hora:</td>
+				<td>{{Auth::user()->dato->precio_cita_hora}}</td>
+			</tr>
+
+			<tr>
+				<td>Precio de Cita por Día:</td>
+				<td>{{Auth::user()->dato->precio_cita_dia}}</td>
+			</tr>
+
+			<tr>
+				<td>Detalles del servicio Cita:</td>
+				<td>{{Auth::user()->dato->detalles_cita}}</td>
+			</tr>
+			@endif
 		</table>
 
     </div>

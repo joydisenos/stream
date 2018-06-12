@@ -94,9 +94,46 @@
     <div class="tap-target-content">
       <h5>Hola, {{title_case(Auth::user()->name)}}</h5>
       <p>Te gustaría tener una cita con {{title_case($user->name)}}? @if($user->dato->sexo == 'hombre')El @elseif($user->dato->sexo == 'mujer') Ella@elseif($user->dato->sexo == 'pareja')Ellos @else @endif se encuentra disponible para agendar una cita</p>
-      <a href="#" class="waves-effect waves-dark btn white black-text">Solicitar</a>
+      <a href="#cita-solicitar" class="waves-effect waves-dark btn white red-text modal-trigger">Solicitar</a>
     </div>
   </div>
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="cita-solicitar" class="modal">
+    <div class="modal-content">
+      <h4>Solicitar Cita</h4>
+      <table>
+        <thead>
+          <th>Precio por Horas</th>
+          <th>Precio por Día</th>
+        </thead>
+        <tr>
+          <td>{{$user->dato->precio_cita_hora}}</td>
+          <td>{{$user->dato->precio_cita_dia}}</td>
+        </tr>
+      </table>
+      <p>{{$user->dato->detalles_cita}}</p>
+    </div>
+    <form method="post" action="{{ url('solicitarcita') }}">
+       <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
+       <input type="hidden" name="user_id" value="{{$user->id}}">
+       <input type="hidden" name="email" value="{{Auth::user()->email}}">
+      
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="detalles" name="detalles" class="materialize-textarea"></textarea>
+          <label for="textarea1">Indiquenos la fecha y los días que solicita</label>
+        </div>
+      </div>
+
+     
+    
+    <div class="modal-footer">
+      <button type="submit" class="modal-close waves-effect waves-green btn-flat">Solicitar</button>
+      </form>
+    </div>
   </div>
   @else
   @endif

@@ -32,7 +32,7 @@ class HomeController extends Controller
 
         $datos = Dato::where('user_id', $user_id)->first();
         $billeteras = Billetera::where('user_id', $user_id)->first();
-        $camaras= User::take(9)->get();
+        $camaras= Dato::where('afiliado','=',2)->take(9)->get();
 
         if(!$datos)
         {

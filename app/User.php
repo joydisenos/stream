@@ -46,6 +46,11 @@ class User extends Authenticatable
         return $this->hasMany(Foto::class);
     }
 
+    public function citas()
+    {
+        return $this->hasMany(Cita::class);
+    }
+
     public function Billetera()
     {
         return $this->hasOne(Billetera::class);
