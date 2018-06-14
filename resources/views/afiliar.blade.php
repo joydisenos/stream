@@ -29,19 +29,19 @@
 <h5>Datos Personales</h5>
        <div class="row">
         <div class="input-field col s6">
-          <input id="edad" name="edad" type="number" class="citas-form">
+          <input id="edad" name="edad" type="number" class="citas-form" required>
           <label for="edad">Edad</label>
         </div>
 
         <div class="input-field col s6">
-          <input id="telefono" name="telefono" type="number" class="citas-form">
+          <input id="telefono" name="telefono" type="number" class="citas-form" required>
           <label for="telefono">Número Telefónico</label>
         </div>
        </div>
 
        <div class="row">
   <div class="input-field col s12">
-    <select name="provincia" id="provincia">
+    <select name="provincia" id="provincia" required>
       <option value="" disabled selected>Seleccione su Provincia</option>
       <option value="San Jose">San José</option>
       <option value="Heredia">Heredia</option>
