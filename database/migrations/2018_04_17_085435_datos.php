@@ -32,11 +32,25 @@ class Datos extends Migration
         
         $table->String('sexo');
         
-        $table->String('localidad');
-        
         $table->String('interes');
 
-        $table->integer('afiliado')->default(0);
+        $table->integer('afiliado')->default(0)->nullable();
+        
+        $table->integer('natural')->default(0)->nullable();
+
+        $table->integer('fitness')->default(0)->nullable();
+
+        $table->integer('grandespechos')->default(0)->nullable();
+
+        $table->integer('trasero')->default(0)->nullable();
+
+        $table->String('localidad');
+
+        $table->String('edad');
+
+        $table->String('provincia');
+
+        $table->String('telefono');
 
         $table->float('precio_cam_sesion')->default(0);
 

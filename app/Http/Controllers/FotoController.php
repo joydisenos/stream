@@ -85,7 +85,7 @@ class FotoController extends Controller
 
        
 
-        return redirect('usuario');
+        return redirect()->back()->with('status','Foto Agregada con éxito');
     }
 
     /**

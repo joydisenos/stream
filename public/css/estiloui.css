@@ -28,7 +28,14 @@
 .logo-pri{
 	padding:5px;
 }
-
+/*Modal*/
+.modal{
+    overflow: hidden;
+    font-size: small;
+}
+.close-modal{
+    display: none;
+}
 /*chat*/
 
 .mytext{

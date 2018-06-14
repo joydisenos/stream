@@ -95,6 +95,31 @@ Zona de Usuarios
 				<td>{{Auth::user()->dato->interes}}</td>
 			</tr>
 			@if(Auth::user()->dato->afiliado == 2)
+			
+			<tr>
+				<td>Edad:</td>
+				<td>{{Auth::user()->dato->edad}}</td>
+			</tr>
+			
+			<tr>
+				<td>Provincia:</td>
+				<td>{{Auth::user()->dato->provincia}}</td>
+			</tr>
+
+			<tr>
+				<td>Teléfono:</td>
+				<td>{{Auth::user()->dato->telefono}}</td>
+			</tr>
+
+			<tr>
+				<td>Categorías:</td>
+				<td>@if(Auth::user()->dato->natural == 1)Natural @endif
+					@if(Auth::user()->dato->fitness == 1)Fitness @endif
+					@if(Auth::user()->dato->grandespechos == 1)Grandes Pechos @endif
+					@if(Auth::user()->dato->trasero == 1)Trasero @endif
+				</td>
+			</tr>
+
 			<tr>
 				<td>Precio de Cam por Sesión:</td>
 				<td>{{Auth::user()->dato->precio_cam_sesion}}</td>

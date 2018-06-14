@@ -55,6 +55,14 @@ class HomeController extends Controller
 
         $dato->detalles_cita = 'vacio';
 
+        $dato->edad = 'vacio';
+
+        $dato->provincia = 'vacio';
+        
+        $dato->telefono = 'vacio';
+
+        $dato->localidad = 'vacio';
+
         $dato->save();
 
         

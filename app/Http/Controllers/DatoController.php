@@ -181,6 +181,13 @@ class DatoController extends Controller
 
         if($dato->afiliado == 2)
         {
+                       
+            $dato->edad = $request->edad;
+            
+            $dato->provincia = $request->provincia;
+            
+            $dato->telefono = $request->telefono;
+
             $dato->precio_cam_sesion = $request->precio_cam_sesion;
 
             $dato->precio_cam_hora = $request->precio_cam_hora;
@@ -206,6 +213,35 @@ class DatoController extends Controller
             {
                 $dato->detalles_cita = $request->detalles_cita;
             }
+
+            if($request->natural != null)
+            {
+                $dato->natural = $request->natural;
+            }else{
+                $dato->natural = 0;
+            }
+
+            if($request->fitness != null)
+            {
+                $dato->fitness = $request->fitness;
+            }else{
+                $dato->fitness = 0;
+            }
+
+            if($request->grandespechos != null)
+            {
+                $dato->grandespechos = $request->grandespechos;
+            }else{
+                $dato->grandespechos = 0;
+            }
+
+            if($request->trasero != null)
+            {
+                $dato->trasero = $request->trasero;
+            }else{
+                $dato->trasero = 0;
+            }
+
         }
         
         
@@ -288,6 +324,12 @@ class DatoController extends Controller
         $dato = Dato::findOrFail($id);
 
         $dato->afiliado = 1;
+            
+        $dato->edad = $request->edad;
+            
+        $dato->provincia = $request->provincia;
+            
+        $dato->telefono = $request->telefono;
 
         $dato->precio_cam_sesion = $request->precio_cam_sesion;
 
@@ -312,6 +354,26 @@ class DatoController extends Controller
         {
                 $dato->detalles_cita = $request->detalles_cita;
         }
+
+        if($request->natural != null)
+            {
+                $dato->natural = $request->natural;
+            }
+
+            if($request->fitness != null)
+            {
+                $dato->fitness = $request->fitness;
+            }
+
+            if($request->grandespechos != null)
+            {
+                $dato->grandespechos = $request->grandespechos;
+            }
+
+            if($request->trasero != null)
+            {
+                $dato->trasero = $request->trasero;
+            }
 
         $dato->save();
 

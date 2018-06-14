@@ -89,15 +89,78 @@ Zona de Usuarios
         </div>
 
 @if($dato->afiliado == 2)
-        <div class="row">
+       <h5>Datos Personales</h5>
+       <div class="row">
         <div class="input-field col s6">
-          <input id="precio_cam_sesion" name="precio_cam_sesion" type="number" class="" required >
-          <label for="precio_cam_sesion">Precio por Sesión</label>
+          <input id="edad" name="edad" type="number" class="citas-form" required value="{{$dato->edad}}">
+          <label for="edad">Edad</label>
         </div>
 
         <div class="input-field col s6">
-          <input id="precio_cam_hora" name="precio_cam_hora" type="number" class="" required >
-          <label for="precio_cam_hora">Precio por Horas</label>
+          <input id="telefono" name="telefono" type="number" class="citas-form" required value="{{$dato->telefono}}">
+          <label for="telefono">Número Telefónico</label>
+        </div>
+       </div>
+
+       <div class="row">
+  <div class="input-field col s12">
+    <select name="provincia" id="provincia" required>
+      <option value="" disabled selected>Seleccione su Provincia</option>
+      <option value="San Jose">San José</option>
+      <option value="Heredia">Heredia</option>
+      <option value="Alajuela">Alajuela</option>
+      <option value="Cartago">Cartago</option>
+      <option value="Puntarenas">Puntarenas</option>
+      <option value="Limon">Limón</option>
+      <option value="Guanacaste">Guanacaste</option>
+    </select>
+    <label>Provincia</label>
+  </div>
+       </div>
+
+        <div class="row">
+            <h5>Seleccione una o varias categorías que la describan</h5>
+
+    <p>
+      <label> 
+        <input type="checkbox" name="natural" id="natural" value="1" />
+        <span>Natural</span>
+      </label>
+    </p>
+
+    <p>
+      <label> 
+        <input type="checkbox" name="fitness" id="fitness" value="1" />
+        <span>Cuerpo Fitness</span>
+      </label>
+    </p>
+
+    <p>
+      <label> 
+        <input type="checkbox" name="grandespechos" id="grandespechos" value="1" />
+        <span>Grandes Pechos</span>
+      </label>
+    </p>
+
+    <p>
+      <label> 
+        <input type="checkbox" name="trasero" id="trasero" value="1" />
+        <span>Gran Trasero</span>
+      </label>
+    </p>
+
+        </div>
+    
+        <h5>Costo por transmisión de cámara</h5>
+    <div class="row">
+        <div class="input-field col s6">
+          <input id="precio_cam_sesion" name="precio_cam_sesion" type="number" class="" required value="{{$dato->precio_cam_sesion}}" >
+          <label for="precio_cam_sesion">Precio por Sesión (USD)</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="precio_cam_hora" name="precio_cam_hora" type="number" class="" required  value="{{$dato->precio_cam_hora}}">
+          <label for="precio_cam_hora">Precio por Minuto (USD)</label>
         </div>
 
     </div>
@@ -111,20 +174,20 @@ Zona de Usuarios
 
     <div class="row">
         <div class="input-field col s6">
-          <input id="precio_cita_hora" name="precio_cita_hora" type="number" class="citas-form">
-          <label for="precio_cita_hora">Precio de Cita por Hora</label>
+          <input id="precio_cita_hora" name="precio_cita_hora" type="number" class="citas-form" value="{{$dato->precio_cita_hora}}">
+          <label for="precio_cita_hora" >Precio de Cita por Hora</label>
         </div>
 
         <div class="input-field col s6">
-          <input id="precio_cita_dia" name="precio_cita_dia" type="number" class="citas-form">
-          <label for="precio_cita_dia">Precio de Cita por Día</label>
+          <input id="precio_cita_dia" name="precio_cita_dia" type="number" class="citas-form" value="{{$dato->precio_cita_dia}}">
+          <label for="precio_cita_dia" >Precio de Cita por Día</label>
         </div>
         
     </div>
 
     <div class="row">
         <div class="input-field col s12">
-            <textarea name="detalles_cita" id="detalles_cita" cols="30" rows="30" class="citas-form"></textarea>
+            <textarea name="detalles_cita" id="detalles_cita" cols="30" rows="30" class="citas-form">{{$dato->detalles_cita}}</textarea>
             <label for="detalles_cita">Descripción del servicio de Citas</label>
         </div>
     </div>
