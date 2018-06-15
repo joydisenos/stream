@@ -59,16 +59,21 @@ class FotoController extends Controller
     {
 
 
-        $file = $request->file('url');
-        $nombre = $file->getClientOriginalName();
-        \Storage::disk('public')->put($nombre,  \File::get($file));
+        // old $file = $request->file('url');
+        //$nombre = $file->getClientOriginalName();
+        //\Storage::disk('public')->put($nombre,  \File::get($file));
         
+        $file = $request->file('file');
+        $path = public_path() . '/storage';
+        $fileName = uniqid() . $file->getClientOriginalName();
+
+        $file->move($path, $fileName);
 
 
         $foto = new Foto();
 
         
-        $foto->url = $nombre;
+        $foto->url = $fileName;
 
                 
         $foto->tags = Auth::user()->dato->sexo;

@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::get('/', 'CamController@index');
 Route::get('/filtrar/{filtro}', 'CamController@filtrar');
+Route::get('/categoria/{filtro}', 'CamController@categorias');
 
 Route::resource('camara', 'CamController');
 

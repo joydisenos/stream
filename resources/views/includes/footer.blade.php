@@ -10,10 +10,11 @@
         <div class="col l6 s12">
           <h5 class="white-text">Categorías</h5>
           <ul>
-             <li><a href="{{url('filtrar/mujer')}}" class="white-text">Mujeres</a></li>
-        <li><a href="{{url('filtrar/hombre')}}" class="white-text">Hombres</a></li>
-        <li><a href="{{url('filtrar/pareja')}}" class="white-text">Parejas</a></li>
-        <li><a href="{{url('filtrar/trans')}}" class="white-text">Trans</a></li>
+        <li><a href="{{url('categoria/natural')}}" class="white-text">Natural</a></li>
+        <li><a href="{{url('categoria/fitness')}}" class="white-text">Fitness</a></li>
+        <li><a href="{{url('categoria/grandespechos')}}" class="white-text">Grandes Pechos</a></li>
+        <li><a href="{{url('categoria/trasero')}}" class="white-text">Trasero</a></li>
+        
           </ul>
         </div>
        

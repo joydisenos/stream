@@ -40,6 +40,19 @@ class CamController extends Controller
 
     }
 
+    public function categorias ($filtro)
+    {
+        $camaras = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where( $filtro ,'=', 1 )->paginate(12);
+        $ultimas = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->take(5)->get();
+        $hombres = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where('sexo','=','hombre')->take(5)->get();
+        $mujeres = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where('sexo','=','mujer')->take(5)->get();
+
+
+
+        return view('filtro', compact('camaras','ultimas','hombres','mujeres'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

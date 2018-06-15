@@ -1,23 +1,16 @@
 @extends('layouts.frontui')
 @section('content')
+<?php 
+
+  $fotos = Auth::user()->foto->count();
+
+?>
 
 
 
 <div class="row">
 	<div class="col s12">
-		
-
-
-
-
-        
-    <?php 
-
-	$fotos = Auth::user()->foto->count();
-
-	 ?>
-
-
+	
 
 <div class="container">
 	
@@ -27,17 +20,62 @@
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
 
 <h5>Datos Personales</h5>
-       <div class="row">
-        <div class="input-field col s6">
+
+<div class="row">
+  <div class="input-field col s6">
+    <input type="number" name="nacimiento_ano" id="nacimiento_ano" required>
+    <label for="nacimiento_ano">Año de Nacimiento</label>
+  </div>
+
+   <div class="input-field col s6">
           <input id="edad" name="edad" type="number" class="citas-form" required>
           <label for="edad">Edad</label>
         </div>
+
+  
+</div>
+
+<div class="row">
+             <div class="input-field col s12">
+           
+            <select id="sexo" name = "sexo" type="text" class="form-control" required>
+                <option value="" disabled selected>Seleccione</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="pareja">Pareja</option>
+                <option value="trans">Trans</option>
+            </select> 
+             <label for="sexo">Sexo</label>
+        </div>
+        </div>
+       <div class="row">
+       
+       <div class="input-field col s6">
+                <label for="localidad">Localidad</label>
+                <input id="localidad" name = "localidad" type="text" class="form-control" required> 
+            </div>
 
         <div class="input-field col s6">
           <input id="telefono" name="telefono" type="number" class="citas-form" required>
           <label for="telefono">Número Telefónico</label>
         </div>
        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+
+            <select id="interes" name = "interes" type="text">
+                <option value="hombres">Hombres</option>
+                <option value="mujeres">Mujeres</option>
+                <option value="parejas">Parejas</option>
+                <option value="hombresymujeres">Hombres y Mujeres</option>
+                <option value="trans">Trans</option>
+                <option value="sp">Sin Preferencia</option>
+            </select> 
+
+            <label for="interes">Interés</label>
+            </div>
+        </div>
 
        <div class="row">
   <div class="input-field col s12">
@@ -86,6 +124,13 @@
       </label>
     </p>
 
+        </div>
+
+         <div class="row">
+             <div class="input-field col s12">
+            <label for="biografia">Biografía</label>
+            <textarea id="biografia" name = "biografia" type="text" class="form-control" required></textarea>
+        </div>
         </div>
 	
 		<h5>Costo por transmisión de cámara</h5>
@@ -149,37 +194,40 @@
     </p>
 	
     <button type="submit" class="waves-effect blue waves-light btn">Enviar Solicitud</button>
-</div>
+
 
     </form>
 
-	</div>
+	
 	@else
+
 	<h6>Debe al menos tener 5 fotos para continuar su afiliación</h6>
+
 	<div class="row">
 			<div class="col s6">
 				<h4>Agregar Fotos</h4>
 			</div>
 			<div class="col s6">
-				<form action="{{url('foto/guardar')}}" method="post" enctype="multipart/form-data">
-				<input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
 				
-				<div class="file-field input-field">
-			      <div class="btn">
-			        <span>Foto</span>
-			        <input type="file" name="url" id="url" required>
-			      </div>
-			      <div class="file-path-wrapper">
-			        <input class="file-path validate" type="text">
-			      </div>
-			    </div>
-				
+ 
 
-
-				<button class="btn waves-effect waves-light red" type="submit">Subir</button>
-				</form>
 			</div>
+      
 		</div>
+    <div class="row">
+      <div class="col s12">
+        <form action="{{url('foto/guardar')}}" method="post" class="dropzone" id="fotosperfil" enctype="multipart/form-data">
+        
+        <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
+        
+    </form>
+
+    <a class="btn waves-effect waves-light blue" href="{{url('afiliar')}}">Siguiente
+    <i class="material-icons right">send</i>
+  </a>
+      </div>
+    </div>
+
 
 		@foreach(Auth::user()->foto->chunk(3) as $row)
 				
@@ -205,8 +253,19 @@
 	
 			@endforeach
 	@endif
+  </div>
+  </div>
 </div>
 
 
 
+@endsection
+@section('scripts')
+<script>
+  Dropzone.options.fotosperfil = {
+    paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+    maxFilesize: 4 // Tamaño máximo en MB
+
+};
+</script>
 @endsection

@@ -326,6 +326,16 @@ class DatoController extends Controller
         $dato->afiliado = 1;
             
         $dato->edad = $request->edad;
+
+        $dato->biografia = $request->biografia;
+
+        $dato->nacimiento_ano = $request->nacimiento_ano;
+
+        $dato->sexo = $request->sexo;
+
+        $dato->localidad = $request->localidad;
+
+        $dato->interes = $request->interes;
             
         $dato->provincia = $request->provincia;
             

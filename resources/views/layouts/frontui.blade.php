@@ -13,13 +13,9 @@
 
 	<!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="{{asset('materialize/css/materialize.min.css')}}">
+    <link rel="stylesheet" href="{{asset('dropzone/dropzone.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('/css/estiloui.css')}}">
-
-
-    
-
-
 
 
 </head>
@@ -125,6 +121,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
+<script src="{{asset('dropzone/dropzone.min.js')}}"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 <script>
@@ -135,6 +133,7 @@
     $('.tabs').tabs();
     $('.tap-target').tapTarget();
     $('select').formSelect();
+    $('.tooltipped').tooltip();
 
   });
 </script>

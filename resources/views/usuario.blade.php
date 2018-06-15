@@ -160,23 +160,15 @@ Zona de Usuarios
 				<h4>Agregar Fotos</h4>
 			</div>
 			<div class="col s6">
-				<form action="{{url('foto/guardar')}}" method="post" enctype="multipart/form-data">
-				<input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-				
-				<div class="file-field input-field">
-			      <div class="btn">
-			        <span>Foto</span>
-			        <input type="file" name="url" id="url" required>
-			      </div>
-			      <div class="file-path-wrapper">
-			        <input class="file-path validate" type="text">
-			      </div>
-			    </div>
 				
 
+				<form action="{{url('foto/guardar')}}" method="post" class="dropzone" id="fotosperfil" enctype="multipart/form-data">
+        
+        <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
+        
+    </form>
 
-				<button class="btn waves-effect waves-light red" type="submit">Subir</button>
-				</form>
+
 			</div>
 		</div>
 		
@@ -187,14 +179,14 @@ Zona de Usuarios
 					<div class="col m4 s12">
                   
                     
-                    <div class="imagen">
+                    <div class="imagen tooltipped" data-position="top" data-tooltip="Presiona el botón rojo para elegir entre foto pública o privada">
                     	<img src="{{ url('storage').'/'.$foto->url }}" class="imgcam materialboxed">
 
                     </div>
                     @if($foto->publico==1)
-                    <a href="{{url('usuario/cambiar').'/'.hashid()->encode($foto->id).'/2'}}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">visibility</i></a>
+                    <a href="{{url('usuario/cambiar').'/'.hashid()->encode($foto->id).'/2'}}" class="btn-floating btn-large waves-effect waves-light red tooltipped"  data-position="right" data-tooltip="Presiona para cambiar a foto privada"><i class="material-icons">visibility</i></a>
                     @elseif($foto->publico==2)
-                    <a href="{{url('usuario/cambiar').'/'.hashid()->encode($foto->id).'/1'}}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">visibility_off</i></a>
+                    <a href="{{url('usuario/cambiar').'/'.hashid()->encode($foto->id).'/1'}}" class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="right" data-tooltip="Presiona para cambiar a foto pública"><i class="material-icons">visibility_off</i></a>
                     @endif
 
                  
@@ -226,4 +218,13 @@ Zona de Usuarios
 
 
 
+@endsection
+@section('scripts')
+<script>
+  Dropzone.options.fotosperfil = {
+    paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+    maxFilesize: 4 // Tamaño máximo en MB
+
+};
+</script>
 @endsection
