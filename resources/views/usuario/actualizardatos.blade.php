@@ -118,7 +118,8 @@ Zona de Usuarios
   </div>
        </div>
 
-        <div class="row">
+       <!--
+       <div class="row">
             <h5>Seleccione una o varias categorías que la describan</h5>
 
     <p>
@@ -150,6 +151,7 @@ Zona de Usuarios
     </p>
 
         </div>
+       -->
     
         <h5>Costo por transmisión de cámara</h5>
     <div class="row">

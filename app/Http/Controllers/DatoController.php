@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Dato;
 use App\Cita;
+use App\Filtro;
+use App\Filtro_usuario;
 use Amranidev\Ajaxis\Ajaxis;
 use Illuminate\Support\Facades\Auth;
 use URL;
@@ -214,7 +216,7 @@ class DatoController extends Controller
                 $dato->detalles_cita = $request->detalles_cita;
             }
 
-            if($request->natural != null)
+            /*if($request->natural != null)
             {
                 $dato->natural = $request->natural;
             }else{
@@ -240,7 +242,7 @@ class DatoController extends Controller
                 $dato->trasero = $request->trasero;
             }else{
                 $dato->trasero = 0;
-            }
+            }*/
 
         }
         
@@ -311,13 +313,15 @@ class DatoController extends Controller
 
     public function afiliar()
     {
-        return view('afiliar');
+        $categorias = Filtro::where('estatus','=',1)->get();
+
+        return view('afiliar',compact('categorias'));
     }
 
     public function afiliar_solicitud(Request $request)
     {
 
-
+        
       
         $id = Auth::user()->id;
 
@@ -365,6 +369,8 @@ class DatoController extends Controller
                 $dato->detalles_cita = $request->detalles_cita;
         }
 
+        /*
+
         if($request->natural != null)
             {
                 $dato->natural = $request->natural;
@@ -384,7 +390,16 @@ class DatoController extends Controller
             {
                 $dato->trasero = $request->trasero;
             }
+        */
+            $categorias = $request->input('categoria');
 
+            foreach ($categorias as $filtro => $n) 
+            {
+                $filtro = new Filtro_usuario();
+                $filtro->user_id = Auth::user()->id;
+                $filtro->filtro_id = $n;
+                $filtro->save();
+            }
         $dato->save();
 
         return redirect('usuario')->with('status','Su Solicitud será procesada en breve nos comunicaremos para confirmar su afiliación');

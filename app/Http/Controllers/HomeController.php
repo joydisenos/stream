@@ -8,6 +8,7 @@ use App\Dato;
 use App\Billetera;
 use App\User;
 
+
 class HomeController extends Controller
 {
     /**
@@ -28,6 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         
+
         $user_id = Auth::user()->id;
 
         $datos = Dato::where('user_id', $user_id)->first();

@@ -134,6 +134,7 @@
     $('.tap-target').tapTarget();
     $('select').formSelect();
     $('.tooltipped').tooltip();
+    $('.parallax').parallax();
 
   });
 </script>

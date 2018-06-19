@@ -10,10 +10,19 @@
         <div class="col l6 s12">
           <h5 class="white-text">Categorías</h5>
           <ul>
-        <li><a href="{{url('categoria/natural')}}" class="white-text">Natural</a></li>
-        <li><a href="{{url('categoria/fitness')}}" class="white-text">Fitness</a></li>
-        <li><a href="{{url('categoria/grandespechos')}}" class="white-text">Grandes Pechos</a></li>
-        <li><a href="{{url('categoria/trasero')}}" class="white-text">Trasero</a></li>
+       <?php 
+        $categoriaslista = App\Filtro::where('estatus','=',1)->get();
+        ?>
+
+        @foreach($categoriaslista as $cat)
+
+        <?php $conteo = App\Filtro_usuario::where('filtro_id','=',$cat->id)->where('estatus','=', 1)->count(); ?>
+
+        @if($conteo > 0)
+        <li><a href="{{url('categoria').'/'.$cat->id}}" class="white-text">{{$cat->nombre}}</a></li>
+        @endif
+
+        @endforeach
         
           </ul>
         </div>

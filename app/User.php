@@ -56,4 +56,9 @@ class User extends Authenticatable
         return $this->hasOne(Billetera::class);
     }
 
+    public function Categorias()
+    {
+        return $this->hasMany(Filtro_usuario::class);
+    }
+
 }

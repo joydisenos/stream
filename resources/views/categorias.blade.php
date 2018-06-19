@@ -11,7 +11,7 @@
                     <div class="camarawrap">
 
                     <div class="imagen">
-                      <img src="{{asset('storage').'/'.$camara->foto_perfil}}" class="imgcam responsive-img">
+                      <img src="{{asset('storage').'/'.$camara->user->dato->foto_perfil}}" class="imgcam responsive-img">
 
                         <div class="valign-wrapper hover-name"> 
                 

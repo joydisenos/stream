@@ -35,6 +35,7 @@
 
 @include('includes.tendencias')
 
+@if (Cookie::get('advertencia') == null)
 
 <!-- Modal Structure -->
  <div id="terminos" class="modal">
@@ -53,9 +54,18 @@
 
   <a href="#" rel="modal:close" class="btn blue">Aceptar</a>
 </div>
+    
+@else
+
+
+    
+@endif
+
 
 @endsection
 @section('scripts')
+@if (Cookie::get('advertencia') == null)
+
 <script>
   $(document).ready(function(){
     $("#terminos").modal({
@@ -63,6 +73,10 @@
     });
   });
 </script>
+    
+@else
+
+@endif
 <style>
   .modal a.close-modal{
     display: none;

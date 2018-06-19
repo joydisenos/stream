@@ -113,10 +113,10 @@ Zona de Usuarios
 
 			<tr>
 				<td>Categorías:</td>
-				<td>@if(Auth::user()->dato->natural == 1)Natural @endif
-					@if(Auth::user()->dato->fitness == 1)Fitness @endif
-					@if(Auth::user()->dato->grandespechos == 1)Grandes Pechos @endif
-					@if(Auth::user()->dato->trasero == 1)Trasero @endif
+				<td>
+					@foreach(Auth::user()->categorias as $categoria)
+					{{$categoria->filtro->nombre}},
+					@endforeach
 				</td>
 			</tr>
 

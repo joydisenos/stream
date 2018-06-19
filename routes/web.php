@@ -95,3 +95,20 @@ Route::group(['middleware'=> 'auth'],function(){
   Route::get('/afiliar/{id}','AdminController@afiliar');
   Route::get('/citas','AdminController@citas');
 });
+
+//filtro Routes
+Route::group(['middleware'=> 'web'],function(){
+  Route::resource('filtro','\App\Http\Controllers\FiltroController');
+  Route::post('filtro/{id}/update','\App\Http\Controllers\FiltroController@update');
+  Route::get('filtro/{id}/delete','\App\Http\Controllers\FiltroController@destroy');
+  Route::get('filtro/{id}/deleteMsg','\App\Http\Controllers\FiltroController@DeleteMsg');
+  Route::get('filtro/{id}/borrar','\App\Http\Controllers\FiltroController@borrar');
+});
+
+//filtro_usuario Routes
+Route::group(['middleware'=> 'web'],function(){
+  Route::resource('filtro_usuario','\App\Http\Controllers\Filtro_usuarioController');
+  Route::post('filtro_usuario/{id}/update','\App\Http\Controllers\Filtro_usuarioController@update');
+  Route::get('filtro_usuario/{id}/delete','\App\Http\Controllers\Filtro_usuarioController@destroy');
+  Route::get('filtro_usuario/{id}/deleteMsg','\App\Http\Controllers\Filtro_usuarioController@DeleteMsg');
+});

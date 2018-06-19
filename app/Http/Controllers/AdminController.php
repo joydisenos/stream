@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Dato;
 use App\Cita;
+use App\Filtro_usuario;
 
 class AdminController extends Controller
 {
@@ -98,6 +99,15 @@ class AdminController extends Controller
         $dato = Dato::findOrFail($id);
         $dato->afiliado = 2;
         $dato->save();
+
+        
+        $filtros = Filtro_usuario::where('user_id','=',$dato->user_id)->get();
+        foreach ($filtros as $filtro) 
+        {
+            $filtro->estatus = 1;
+            $filtro->save();
+        }
+        
 
         return redirect()->back()->with('status','Usuario Afiliado con éxito');
     }

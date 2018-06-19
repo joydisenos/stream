@@ -96,7 +96,9 @@
         <div class="row">
         	<h5>Seleccione una o varias categorías que la describan</h5>
 
-    <p>
+    <!--
+
+      <p>
       <label> 
         <input type="checkbox" name="natural" id="natural" value="1" />
         <span>Natural</span>
@@ -123,6 +125,17 @@
         <span>Gran Trasero</span>
       </label>
     </p>
+
+  -->
+
+  @foreach($categorias as $categoria)
+  <p>
+      <label> 
+        <input type="checkbox" name="categoria[{{$categoria->id}}]" value="{{$categoria->id}}" />
+        <span>{{$categoria->nombre}}</span>
+      </label>
+  </p>
+  @endforeach
 
         </div>
 

@@ -103,6 +103,7 @@
 						</li>
 						<li class="header">Administración</li>
 						<li class="treeview"><a href="{{url('/scaffold-users')}}"><i class="fa fa-users"></i> <span>Usuarios</span></a></li>
+						<li class="treeview"><a href="{{url('/filtro')}}"><i class="fa fa-sort-amount-asc"></i> <span>Categorias</span></a></li>
 						<li class="treeview"><a href="{{url('/scaffold-roles')}}"><i class="fa fa-user-plus"></i> <span>Roles</span></a></li>
 						
 						<!--
@@ -115,14 +116,14 @@
 						-->
 
 						<li class="header">Perfil</li>
-						<li class="treeview"><a href="{{url('/perfil')}}"><i class="fa fa-users"></i> <span>Perfil</span></a></li>
-						<li class="treeview"><a href="{{url('/dato')}}"><i class="fa fa-users"></i> <span>Todos los perfiles</span></a></li>
-						<li class="treeview"><a href="{{url('/afiliados')}}"><i class="fa fa-users"></i> <span>Afiliados</span></a></li>
-						<li class="treeview"><a href="{{url('/foto')}}"><i class="fa fa-users"></i> <span>Fotos</span></a></li>
+						<li class="treeview"><a href="{{url('/perfil')}}"><i class="fa fa-th-list"></i> <span>Perfil</span></a></li>
+						<li class="treeview"><a href="{{url('/dato')}}"><i class="fa fa-tasks"></i> <span>Todos los perfiles</span></a></li>
+						<li class="treeview"><a href="{{url('/afiliados')}}"><i class="fa fa-tags"></i> <span>Afiliados</span></a></li>
+						<li class="treeview"><a href="{{url('/foto')}}"><i class="fa fa-clone"></i> <span>Fotos</span></a></li>
 						<li class="header">Historial</li>
-						<li class="treeview"><a href="{{url('/billetera')}}"><i class="fa fa-users"></i> <span>Billeteras</span></a></li>
-						<li class="treeview"><a href="{{url('/citas')}}"><i class="fa fa-users"></i> <span>Citas</span></a></li>
-						<li class="treeview"><a href="{{url('/movimiento')}}"><i class="fa fa-users"></i> <span>Movimientos</span></a></li>
+						<li class="treeview"><a href="{{url('/billetera')}}"><i class="fa fa-dollar"></i> <span>Billeteras</span></a></li>
+						<li class="treeview"><a href="{{url('/citas')}}"><i class="fa fa-comments-o"></i> <span>Citas</span></a></li>
+						<li class="treeview"><a href="{{url('/movimiento')}}"><i class="fa fa-exchange"></i> <span>Movimientos</span></a></li>
 						
 					</ul>
 				</section>

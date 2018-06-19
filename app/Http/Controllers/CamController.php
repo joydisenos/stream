@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Filtro;
+use App\Filtro_usuario;
 use App\Dato;
+use App\Foto;
 use ElfSundae\Laravel\Hashid\Facades\Hashid;
+use Cookie;
 
 
 class CamController extends Controller
@@ -19,6 +23,10 @@ class CamController extends Controller
     public function index()
     {
         // configurar con socket para listar en tiempo real
+
+        
+        
+        Cookie::queue('advertencia', true, 95000);
 
         $camaras= Dato::where('afiliado' ,'=', 2)->paginate(12);
         $ultimas = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->take(5)->get();
@@ -42,14 +50,15 @@ class CamController extends Controller
 
     public function categorias ($filtro)
     {
-        $camaras = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where( $filtro ,'=', 1 )->paginate(12);
+        $camaras = Filtro_usuario::orderBy('created_at','DESC')->where('filtro_id' ,'=', $filtro)->where('estatus','=', 1)->paginate(12);
+
         $ultimas = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->take(5)->get();
         $hombres = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where('sexo','=','hombre')->take(5)->get();
         $mujeres = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->where('sexo','=','mujer')->take(5)->get();
 
 
 
-        return view('filtro', compact('camaras','ultimas','hombres','mujeres'));
+        return view('categorias', compact('camaras','ultimas','hombres','mujeres'));
 
     }
 
@@ -97,8 +106,10 @@ class CamController extends Controller
 
         $user = User::findOrFail($id_deco[0]);
 
+        $ultimafoto = Foto::where('user_id','=', $id_deco[0])->orderBy('created_at','DESC')->first();
 
-        return view('detalles', compact('user','id'));
+
+        return view('detalles', compact('user','id','ultimafoto'));
 
     }
 
