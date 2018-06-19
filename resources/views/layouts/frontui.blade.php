@@ -24,6 +24,10 @@
 
 <header>
 
+  <?php 
+        $categoriaslista = App\Filtro::where('estatus','=',1)->get();
+        ?>
+
 	<nav class="blue darken-4">
     <div class="nav-wrapper">
       <a href="{{url('/')}}" class="brand-logo">
@@ -32,11 +36,18 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       
 
-      <ul class="right hide-on-med-and-down">    
-        <li><a href="{{url('filtrar/mujer')}}">Mujeres</a></li>
-        <li><a href="{{url('filtrar/hombre')}}">Hombres</a></li>
-        <li><a href="{{url('filtrar/pareja')}}">Parejas</a></li>
-        <li><a href="{{url('filtrar/trans')}}">Trans</a></li>
+      <ul class="right hide-on-med-and-down">
+      
+      @foreach($categoriaslista as $cat)
+
+        <?php $conteo = App\Filtro_usuario::where('filtro_id','=',$cat->id)->where('estatus','=', 1)->count(); ?>
+
+        @if($conteo > 0)
+        <li><a href="{{url('categoria').'/'.$cat->id}}">{{$cat->nombre}}</a></li>
+        @endif
+
+      @endforeach    
+        
         @guest
       
         <li><a href="{{route('login')}}">Iniciar Sesión</a></li>
@@ -128,6 +139,7 @@
 <script>
 	$(document).ready(function(){
 
+
     $('.sidenav').sidenav();
     $('.materialboxed').materialbox();
     $('.tabs').tabs();
@@ -135,6 +147,7 @@
     $('select').formSelect();
     $('.tooltipped').tooltip();
     $('.parallax').parallax();
+
 
   });
 </script>

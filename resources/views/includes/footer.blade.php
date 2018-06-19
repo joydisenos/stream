@@ -10,9 +10,7 @@
         <div class="col l6 s12">
           <h5 class="white-text">Categorías</h5>
           <ul>
-       <?php 
-        $categoriaslista = App\Filtro::where('estatus','=',1)->get();
-        ?>
+       
 
         @foreach($categoriaslista as $cat)
 

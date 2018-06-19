@@ -53,9 +53,37 @@
 
     </div>
   </div>
-  @endif
 
+@guest
+@else
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12">
+         <form method="post" action="{{ url('solicitarcita') }}">
+       <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
+       <input type="hidden" name="user_id" value="{{$user->id}}">
+       <input type="hidden" name="email" value="{{Auth::user()->email}}">
+      
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="detalles" name="detalles" class="materialize-textarea" required></textarea>
+          <label for="textarea1">Indiquenos la fecha y los días que solicita</label>
+        </div>
+      </div>
 
+     
+    
+    <div class="modal-footer">
+      <button type="submit" class="modal-close waves-effect waves-green btn-flat">Solicitar</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endguest
+@endif
  
 
 

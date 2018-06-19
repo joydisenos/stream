@@ -43,21 +43,48 @@
 					<div class="navbar-custom-menu">
 						<ul class="nav navbar-nav">
 							<!-- Notification Navbar List-->
+							<?php 
+								$notificacion1 = App\Dato::where('afiliado','=',1)->get();
+								$notificacion2 = App\Movimiento::where('estado','=','1')->orderBy('created_at','DESC')->get();
+								$notificacion3 = App\Pago::where('estatus','=',1)->get();
+								$notificaciones = count($notificacion1) + count($notificacion2) + count($notificacion3);
+							 ?>
+							@if($notificaciones > 0)
 							<li class="dropdown notifications-menu">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<i class="fa fa-bell-o"></i>
-									<span class="label notification-label">new</span>
+									<span class="label notification-label">{{$notificaciones}}</span>
 								</a>
 								<ul class="dropdown-menu">
 									<li class="header">Notificaciones</li>
 									<li>
 										<!-- inner menu: contains the actual data -->
 										<ul class="menu notification-menu">
+
+											@foreach($notificacion1 as $notificacion)
+
+											<li> <a href="{{url('/afiliados')}}">Solicitud para afiliar de {{title_case($notificacion->user->name)}}</a> </li>
+
+											@endforeach
+
+											@foreach($notificacion2 as $notificacion)
+
+											<li> <a href="{{url('/movimiento')}}">pago realizado de {{title_case($notificacion->user->name)}}</a> </li>
+
+											@endforeach
+
+											@foreach($notificacion3 as $notificacion)
+
+											<li> <a href="{{url('/pagos')}}">Cancelado a {{title_case($notificacion->afiliado->name)}} <strong>{{$notificacion->creditos}} Créditos</strong></a> </li>
+
+											@endforeach
+
 										</ul>
 									</li>
 									<li class="footer"><a href="#">Ver todas</a></li>
 								</ul>
 							</li>
+							@endif
 							<!-- END notification navbar list-->
 							<li class="dropdown user user-menu">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -105,6 +132,8 @@
 						<li class="treeview"><a href="{{url('/scaffold-users')}}"><i class="fa fa-users"></i> <span>Usuarios</span></a></li>
 						<li class="treeview"><a href="{{url('/filtro')}}"><i class="fa fa-sort-amount-asc"></i> <span>Categorias</span></a></li>
 						<li class="treeview"><a href="{{url('/scaffold-roles')}}"><i class="fa fa-user-plus"></i> <span>Roles</span></a></li>
+						<li class="treeview"><a href="{{url('/config')}}"><i class="fa fa-user-plus"></i> <span>Configuración</span></a></li>
+						<li class="treeview"><a href="{{url('/credito')}}"><i class="fa fa-user-plus"></i> <span>Promociones</span></a></li>
 						
 						<!--
 							<li class="treeview"><a href="{{url('/scaffold-permissions')}}"><i class="fa fa-key"></i> <span>Permisos</span></a></li>
@@ -123,7 +152,8 @@
 						<li class="header">Historial</li>
 						<li class="treeview"><a href="{{url('/billetera')}}"><i class="fa fa-dollar"></i> <span>Billeteras</span></a></li>
 						<li class="treeview"><a href="{{url('/citas')}}"><i class="fa fa-comments-o"></i> <span>Citas</span></a></li>
-						<li class="treeview"><a href="{{url('/movimiento')}}"><i class="fa fa-exchange"></i> <span>Movimientos</span></a></li>
+						<li class="treeview"><a href="{{url('/movimiento')}}"><i class="fa fa-exchange"></i> <span>Depósitos</span></a></li>
+						<li class="treeview"><a href="{{url('/pagos')}}"><i class="fa fa-money"></i> <span>Pagos</span></a></li>
 						
 					</ul>
 				</section>

@@ -47,10 +47,10 @@
               @guest
               <a href="{{url('login')}}" class="waves-effect blue waves-light btn">Iniciar Sesión</a>
               @else
-              @if(Auth::user()->id == $user->id)
+              @if( Auth::user()->id == $user->id )
               <a href="#" class="waves-effect blue waves-light btn">Show Privado</a>
               @else
-              <a href="#" class="waves-effect blue waves-light btn">Ingresar Privado</a>
+              <a href="{{url('privado/ingresar').'/'.hashid()->encode($user->id)}}" class="waves-effect blue waves-light btn">Ingresar Privado</a>
               @endif
               @endguest
             </div>
@@ -94,7 +94,7 @@
     <div class="tap-target-content">
       <h5>Hola, {{title_case(Auth::user()->name)}}</h5>
       <p>Te gustaría tener una cita con {{title_case($user->name)}}? @if($user->dato->sexo == 'hombre')El @elseif($user->dato->sexo == 'mujer') Ella@elseif($user->dato->sexo == 'pareja')Ellos @else @endif se encuentra disponible para agendar una cita</p>
-      <a href="#cita-solicitar" class="waves-effect waves-dark btn white red-text modal-trigger">Solicitar</a>
+      <a href="#cita-solicitar" class="waves-effect waves-dark btn white red-text modal-trigger" onclick="$('#cita-solicitar').modal();">Solicitar</a>
     </div>
   </div>
   </div>
@@ -123,7 +123,7 @@
       
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="detalles" name="detalles" class="materialize-textarea"></textarea>
+          <textarea id="detalles" name="detalles" class="materialize-textarea" required></textarea>
           <label for="textarea1">Indiquenos la fecha y los días que solicita</label>
         </div>
       </div>
@@ -269,7 +269,7 @@ insertChat("ellos", "hola, Pablo", 1500);
 insertChat("me", "Que te gustaría que hicieramos hoy?", 3500);
 insertChat("ellos", "Sorpréndeme ;)",7000);
 insertChat("me", "Déjame pensar mmmm", 9500);
-insertChat("ellos", "D:", 12000);
+insertChat("ellos", "D:", 12000); 
 
 
  

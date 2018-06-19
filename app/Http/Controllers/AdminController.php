@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Dato;
+use App\Info;
 use App\Cita;
 use App\Filtro_usuario;
+use ElfSundae\Laravel\Hashid\Facades\Hashid;
+use App\Pago;
 
 class AdminController extends Controller
 {
@@ -85,6 +88,39 @@ class AdminController extends Controller
         //
     }
 
+    public function config()
+    {
+
+        $datos = Info::first();
+        if(!$datos)
+        {
+            $datos = new Info();
+            $datos->link1 = 'vacio';
+            $datos->link1_url = 'vacio';
+            $datos->link2 = 'vacio';
+            $datos->link2_url = 'vacio';
+            $datos->link3 = 'vacio';
+            $datos->link3_url = 'vacio';
+            $datos->link4 = 'vacio';
+            $datos->link4_url = 'vacio';
+            $datos->politicas = 'vacio';
+            $datos->valor_usd = 0;
+            $datos->valor_btc = 0;
+            $datos->save();
+        }
+        return view('config.config',compact('datos'));
+    }
+
+    public function updateconfig(Request $request)
+    {
+        $datos = Info::first();
+        $datos->politicas = $request->politicas;
+        $datos->valor_usd = $request->valor_usd;
+        $datos->save();
+
+        return redirect()->back()->with('status','Actualizado con éxito');
+    }
+
     public function afiliados()
     {
         
@@ -116,5 +152,22 @@ class AdminController extends Controller
     {
         $citas = Cita::all();
         return view('citas.citas',compact('citas'));
+    }
+
+    public function pago()
+    {
+        $pendientes = Pago::where('estatus','=', 1)->get();
+        $pagos = Pago::where('estatus','!=', 1)->get();
+        return view('pagos.pagos',compact('pendientes','pagos'));
+    }
+
+    public function pagar($id , $estatus)
+    {
+        $id_deco = Hashid::decode($id);
+        $pago = Pago::findOrFail($id_deco[0]);
+        $pago->estatus = $estatus;
+        $pago->save();
+
+        return redirect()->back()->with('status','Operación realizada con éxito');
     }
 }

@@ -51,6 +51,16 @@ class User extends Authenticatable
         return $this->hasMany(Cita::class);
     }
 
+    public function pago()
+    {
+        return $this->hasMany(Pago::class,'user_id_usuario');
+    }
+
+    public function gana()
+    {
+        return $this->hasMany(Pago::class,'user_id_afiliado');
+    }
+
     public function Billetera()
     {
         return $this->hasOne(Billetera::class);

@@ -112,3 +112,34 @@ Route::group(['middleware'=> 'web'],function(){
   Route::get('filtro_usuario/{id}/delete','\App\Http\Controllers\Filtro_usuarioController@destroy');
   Route::get('filtro_usuario/{id}/deleteMsg','\App\Http\Controllers\Filtro_usuarioController@DeleteMsg');
 });
+
+//credito Routes
+Route::group(['middleware'=> 'web'],function(){
+  Route::resource('credito','\App\Http\Controllers\CreditoController');
+  Route::post('credito/{id}/update','\App\Http\Controllers\CreditoController@update');
+  Route::get('credito/{id}/delete','\App\Http\Controllers\CreditoController@destroy');
+  Route::get('credito/{id}/deleteMsg','\App\Http\Controllers\CreditoController@DeleteMsg');
+});
+
+// configuracion del sitio
+Route::group(['middleware'=> 'web'],function(){
+  
+  Route::get('config','AdminController@config');
+  Route::post('config','AdminController@updateconfig');
+});
+
+//PAgos
+
+Route::group(['middleware'=> 'web'],function(){
+  
+  Route::get('pagos','AdminController@pago');
+  Route::get('pagar/{id}/{estatus}','AdminController@pagar');
+});
+
+
+// Cobro show privado
+
+Route::group(['middleware'=> 'web'],function(){
+  
+  Route::get('privado/ingresar/{id}','CamController@pago');
+});

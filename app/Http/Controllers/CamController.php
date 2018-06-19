@@ -8,9 +8,12 @@ use App\User;
 use App\Filtro;
 use App\Filtro_usuario;
 use App\Dato;
+use App\Billetera;
+use App\Pago;
 use App\Foto;
 use ElfSundae\Laravel\Hashid\Facades\Hashid;
 use Cookie;
+use Illuminate\Support\Facades\Auth;
 
 
 class CamController extends Controller
@@ -26,7 +29,7 @@ class CamController extends Controller
 
         
         
-        Cookie::queue('advertencia', true, 95000);
+        Cookie::queue('advertencia', true, 5000);
 
         $camaras= Dato::where('afiliado' ,'=', 2)->paginate(12);
         $ultimas = Dato::orderBy('created_at','DESC')->where('afiliado' ,'=', 2)->take(5)->get();
@@ -110,6 +113,41 @@ class CamController extends Controller
 
 
         return view('detalles', compact('user','id','ultimafoto'));
+
+    }
+
+    public function pago($id)
+    {
+        $id_deco = Hashid::decode($id);
+
+        $user = User::findOrFail($id_deco[0]);
+
+
+        // creditos necesarios del afiliado
+        $creditos = $user->dato->precio_cam_sesion;
+        
+        //usuario descuento y verificación
+        $auth = Auth::user()->id;
+        $usuario = User::findOrFail($auth);
+        
+        if($usuario->billetera->disponible >= $creditos)
+        {
+                $billetera = Billetera::where('user_id','=', $auth)->first();
+                $billetera->disponible = $billetera->disponible - $creditos;
+                $billetera->save();
+
+
+                $pago = new Pago();
+                $pago->user_id_usuario = (int)$auth;
+                $pago->user_id_afiliado = (int)$id_deco;
+                $pago->creditos = (float)$creditos;
+                $pago->estatus = '1';
+                $pago->save();
+
+                return redirect()->back()->with('status','Pago realizado con éxito');
+        }else{
+            return redirect()->back()->with('status','No tiene suficientes créditos para realizar esta operación');
+        }
 
     }
 
