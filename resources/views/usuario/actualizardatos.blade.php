@@ -41,8 +41,8 @@ Zona de Usuarios
         <div class="row">
              <div class="input-field col s12">
             <label for="biografia">Biografía</label>
-            <textarea id="biografia" name = "biografia" type="text" class="form-control" > {!!$dato->
-            biografia!!} </textarea>
+            <textarea id="biografia" name = "biografia" type="text" class="materialize-textarea" >{!!$dato->
+            biografia!!}</textarea>
         </div>
         </div>
         <div class="row">

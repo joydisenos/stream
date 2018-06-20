@@ -104,8 +104,10 @@ class AdminController extends Controller
             $datos->link4 = 'vacio';
             $datos->link4_url = 'vacio';
             $datos->politicas = 'vacio';
-            $datos->valor_usd = 0;
-            $datos->valor_btc = 0;
+            $datos->valor_usd = 2;
+            $datos->valor_btc = 2;
+            $datos->email = 'admin@admin.com';
+            $datos->id_paypal = 'Número de Cliente Paypal';
             $datos->save();
         }
         return view('config.config',compact('datos'));
@@ -116,6 +118,8 @@ class AdminController extends Controller
         $datos = Info::first();
         $datos->politicas = $request->politicas;
         $datos->valor_usd = $request->valor_usd;
+        $datos->email = $request->email;
+        $datos->id_paypal = $request->id_paypal;
         $datos->save();
 
         return redirect()->back()->with('status','Actualizado con éxito');

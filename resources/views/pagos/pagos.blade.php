@@ -43,7 +43,8 @@
         Pagos
     </h1>
     <br>
-    <table class = 'table table-bordered'>
+    <input type="text" class="form-control" id="filtro">
+    <table class = 'table table-bordered' id="registros">
     	<thead>
     		<th>Control</th>
     		<th>Afiliado</th>

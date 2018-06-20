@@ -139,12 +139,15 @@
 
         </div>
 
-         <div class="row">
-             <div class="input-field col s12">
-            <label for="biografia">Biografía</label>
-            <textarea id="biografia" name = "biografia" type="text" class="form-control" required></textarea>
+     
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="biografia" name = "biografia" type="text" class="materialize-textarea" required></textarea>
+          <label for="biografia">Biografía</label>
         </div>
-        </div>
+      </div>
+    
 	
 		<h5>Costo por transmisión de cámara</h5>
 	<div class="row">
@@ -180,14 +183,14 @@
 		
 	</div>
 
-	<div class="row">
+
 		<div class="input-field col s12">
 			<div class="row">
-			<textarea name="detalles_cita" id="detalles_cita" cols="30" rows="30" class="citas-form" class="materialize-textarea"></textarea>
+			<textarea name="detalles_cita" id="detalles_cita" cols="30" rows="30" class="materialize-textarea"></textarea>
 			<label for="detalles_cita">Descripción del servicio de Citas</label>
 			</div>
 		</div>
-	</div>
+
 	
 	<div class="row">
 		<div class="col s12">

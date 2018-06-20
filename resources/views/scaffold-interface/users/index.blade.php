@@ -7,7 +7,11 @@
 </div>
 	<div class="box-body">
 		<a href="{{url('/scaffold-users/create')}}" class = "btn btn-success"><i class="fa fa-plus fa-md" aria-hidden="true"></i> Nuevo Usuario</a>
-		<table class = "table table-hover">
+
+   <div class="form-group" style="margin: 10px 0;">
+   	 <input type="text" class="form-control" id="filtro">
+   </div>
+		<table class = "table table-hover" id="registros">
 		<thead>
 			<th>Nombre</th>
 			<th>Email</th>

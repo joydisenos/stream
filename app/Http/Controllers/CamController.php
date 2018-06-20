@@ -13,6 +13,7 @@ use App\Pago;
 use App\Foto;
 use ElfSundae\Laravel\Hashid\Facades\Hashid;
 use Cookie;
+use App\Info;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -100,7 +101,9 @@ class CamController extends Controller
 
         $user = User::findOrFail($id_deco[0]);
 
-        return view('camara', compact('user','id'));
+        $datos = Info::first();
+
+        return view('camara', compact('user','id','datos'));
     }
 
     public function detalles($id)

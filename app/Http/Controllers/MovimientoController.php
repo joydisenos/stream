@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Movimiento;
+use App\Info;
 use Amranidev\Ajaxis\Ajaxis;
 use Illuminate\Support\Facades\Auth;
 use URL;
@@ -62,8 +63,8 @@ class MovimientoController extends Controller
 
     public function comprar()
     {
-       
-        return view('usuario.comprar');
+       $datos = Info::first();
+        return view('usuario.comprar',compact('datos'));
     }
 
     /**

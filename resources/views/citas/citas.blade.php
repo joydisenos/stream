@@ -10,7 +10,9 @@
    
     <br>
 
-    <table class = 'table'>
+    <input type="text" class="form-control" id="filtro">
+
+    <table class = 'table' id="registros">
     	<thead>
     		<th>Afiliado</th>
     		<th>Email usuario</th>

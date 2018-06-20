@@ -25,9 +25,20 @@
             </tr>
 
             <tr>
+                <td> <b>Email Admin</b> </td>
+                <td> <input class="form-control" type="email"  name="email" placeholder="admin@admin.com" value="{{$datos->email}}"> </td>
+            </tr>
+
+            <tr>
+                <td> <b>Id Cliente Paypal</b> </td>
+                <td> <input class="form-control" type="text" name="id_paypal" placeholder="Número Id Paypal" value="{{$datos->id_paypal}}"> </td>
+            </tr>
+
+            <tr>
                 <td></td>
                 <td><button type="submit" class="btn btn-primary">Actualizar</button></td>
             </tr>
+
            
         </tbody>
         </form>

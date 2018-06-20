@@ -9,7 +9,9 @@
     <a href='{!!url("credito")!!}/create' class = 'btn btn-success'><i class="fa fa-plus"></i> Nueva Promoción</a>
     <br>
     <br>
-    <table class = "table table-striped table-bordered table-hover" style = 'background:#fff'>
+
+    <input type="text" class="form-control" id="filtro">
+    <table class = "table table-striped table-bordered table-hover" style = 'background:#fff' id="registros">
         <thead>
             <th>Nombre</th>
             <th>Cantidad de Créditos</th>

@@ -38,6 +38,10 @@ class CreateInfoTable extends Migration
 
             $table->float('valor_btc');
 
+            $table->string('email');
+
+            $table->string('id_paypal');
+
             $table->timestamps();
         });
     }

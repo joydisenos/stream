@@ -28,7 +28,7 @@
 		<div class="wrapper">
 			<header class="main-header">
 				<!-- Logo -->
-				<a href="{{url('scaffold-dashboard')}}" class="logo">
+				<a href="{{url('/')}}" class="logo">
 					<!-- mini logo for sidebar mini 50x50 pixels -->
 					<span class="logo-mini"><b>P</b>C</span>
 					<!-- logo for regular state and mobile devices -->
@@ -124,7 +124,7 @@
 					<ul class="sidebar-menu">
 						<li class="header">Panel Principal</li>
 						<li class="active treeview">
-							<a href="{{url('scaffold-dashboard')}}">
+							<a href="{{url('dashboard')}}">
 								<i class="fa fa-dashboard"></i> <span>General</span></i>
 							</a>
 						</li>
@@ -195,6 +195,19 @@
 			</li>'
 			);
 		});
+
+
+
+   $('#filtro').keyup(function () {
+      var rex = new RegExp($(this).val(), 'i');
+        $('#registros tr').hide();
+        $('#registros tr').filter(function () {
+            return rex.test($(this).text());
+        }).show();
+
+        });
+
+
 		</script>
 	</body>
 </html>

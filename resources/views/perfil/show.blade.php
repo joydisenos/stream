@@ -4,7 +4,7 @@
 
 <section class="content">
     <h1>
-        {{ Auth::user()->name }}
+        {{ title_case(Auth::user()->name) }}
     </h1>
     <br>
     <a href='{!!url("perfil/". $usuario->dato->id)!!}' class = 'btn btn-primary'><i class="fa fa-home"></i>Actualizar Perfil</a>

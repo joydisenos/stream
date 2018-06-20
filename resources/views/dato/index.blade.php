@@ -6,8 +6,8 @@
     <h1>
         Datos usuarios
     </h1>
-    
-    <table class = "table table-striped table-bordered table-hover" style = 'background:#fff'>
+    <input type="text" class="form-control" id="filtro">
+    <table class = "table table-striped table-bordered table-hover" style = 'background:#fff' id="registros">
         <thead>
             <th>Usuario</th>
             <th>Biografía</th>

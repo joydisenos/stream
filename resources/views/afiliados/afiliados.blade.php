@@ -11,6 +11,8 @@
    
     <br>
 
+
+
     <table class = 'table'>
     	<thead>
     		<th>Usuario</th>
@@ -41,8 +43,8 @@
     </h1>
    
     <br>
-
-    <table class = 'table'>
+<input type="text" class="form-control" id="filtro">
+    <table class = 'table' id="registros">
     	<thead>
     		<th>Usuario</th>
     		<th>Email</th>

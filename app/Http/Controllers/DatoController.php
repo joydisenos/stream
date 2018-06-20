@@ -414,7 +414,7 @@ class DatoController extends Controller
         $cita = new Cita();
         $cita->user_id = $request->user_id;
         $cita->email = $request->email;
-        $cita->detalles = $request->detalles;
+        $cita->detalles = implode(",", $request->input('detalles'));
         $cita->estatus = 1;
         $cita->save();
 
