@@ -173,4 +173,6 @@ class CreditoController extends Controller
      	$credito->delete();
         return URL::to('credito');
     }
+
+    
 }

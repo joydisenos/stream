@@ -40,6 +40,7 @@ Route::get('/usuario/cambiar/{id}/{estatus}', 'FotoController@vision');
 
 Route::get('/afiliar', 'DatoController@afiliar');
 Route::post('/afiliar', 'DatoController@afiliar_solicitud');
+Route::get('/galeria/{id}', 'CamController@galeria');
 
 
 });

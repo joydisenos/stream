@@ -29,6 +29,8 @@ class Creditos extends Migration
         $table->float('valor');
         
         $table->String('descripcion');
+
+        $table->String('estatus');
         
         /**
          * Foreignkeys section

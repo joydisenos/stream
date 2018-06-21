@@ -7,13 +7,96 @@ Zona de Usuarios
 @endsection
 
 @section('content')
-<div class="gray text-center">
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<section class="container">
+ <div class="gray text-center">
     <h3>
         Comprar Créditos
     </h3>
    </div>
-<section class="container">
- 
+
+   @if(count($creditos))
+   @foreach($creditos->chunk(2) as $row)
+   <div class="row">
+       @foreach($row as $credito)
+       <div class="col s12 m6">
+           <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="{{asset('/storage/logo.svg')}}">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><strong>{{$credito->cantidad}} Créditos por USD{{$credito->valor}}</strong><i class="material-icons right">more_vert</i></span>
+              <p><div id="paypal-button-container{{$credito->id}}"></div></p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">{{$credito->nombre}}<i class="material-icons right">close</i></span>
+              <p>{{$credito->nombre}}</p>
+              <p>{{$credito->descripcion}}</p>
+            </div>
+          </div>
+        </div>
+        <script>
+
+            var valortotal = {{$credito->valor}};
+              // Render the PayPal button
+
+    paypal.Button.render({
+
+        // Set your environment
+
+        env: 'sandbox', // sandbox | production
+
+        // Specify the style of the button
+
+        style: {
+            size:  'medium', // small | medium | large | responsive
+            shape: 'rect',  // pill | rect
+            tagline: false
+        },
+
+        funding: {
+            allowed: [ paypal.FUNDING.CREDIT ]
+        },
+
+        // PayPal Client IDs - replace with your own
+        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+
+        client: {
+            sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+            production:  '{{$datos->id_paypal}}'
+        },
+
+        // Wait for the PayPal button to be clicked
+
+        payment: function(data, actions) {
+
+            // Set up a payment and make credit the landing page
+
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: valortotal, currency: 'USD' }
+                        }
+                    ]
+                }
+            });
+        },
+
+        // Wait for the payment to be authorized by the customer
+
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function() {
+                window.alert('Pago Completado!');
+            });
+        }
+
+    }, '#paypal-button-container{{$credito->id}}');
+        </script>
+       @endforeach
+   </div>
+   @endforeach
+   @endif
     
     <form method = 'POST' action = '{!!url("comprar")!!}'>
         <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
@@ -64,7 +147,7 @@ Zona de Usuarios
 </div>
 @endsection
 @section('scripts')
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
 <script>
     var precio = {{$datos->valor_usd}};
     var value = $('#cantidad').val();
@@ -88,7 +171,7 @@ Zona de Usuarios
 
         // Set your environment
 
-        env: 'production', // sandbox | production
+        env: 'sandbox', // sandbox | production
 
         // Specify the style of the button
 
@@ -107,7 +190,7 @@ Zona de Usuarios
 
         client: {
             sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
-            production:  {{$datos->id_paypal}}
+            production:  '{{$datos->id_paypal}}'
         },
 
         // Wait for the PayPal button to be clicked

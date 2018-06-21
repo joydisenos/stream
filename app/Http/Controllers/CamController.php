@@ -119,6 +119,20 @@ class CamController extends Controller
 
     }
 
+
+     public function galeria($id)
+    {
+        $id_deco = Hashid::decode($id);
+
+        $user = User::findOrFail($id_deco[0]);
+
+        $ultimafoto = Foto::where('user_id','=', $id_deco[0])->orderBy('created_at','DESC')->first();
+
+
+        return view('detallesall', compact('user','id','ultimafoto'));
+
+    }
+
     public function pago($id)
     {
         $id_deco = Hashid::decode($id);

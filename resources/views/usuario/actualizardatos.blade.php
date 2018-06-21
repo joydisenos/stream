@@ -33,7 +33,7 @@ Zona de Usuarios
                 </div>
             </div>
             <div class="col s6">
-                <img src="{{asset('/storage').'/'.$dato->foto_perfil}}" alt="Foto de perfil {{$dato->user->name}}" width="200" class="fotoperfil">
+                <img src="{{asset('/storage').'/'.$dato->foto_perfil}}" alt="Foto de perfil {{$dato->user->name}}" width="200" id="perfil_prev" class="fotoperfil">
             </div>
             </div>
         </div>
@@ -197,4 +197,24 @@ Zona de Usuarios
         <button class = 'waves-effect blue waves-light btn btn-success' type ='submit'><i class="fa fa-floppy-o"></i> Actualizar</button>
     </form>
 </section>
+@endsection
+@section('scripts')
+<script>
+  function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#perfil_prev').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#foto_perfil").change(function() {
+  readURL(this);
+});
+</script>
 @endsection

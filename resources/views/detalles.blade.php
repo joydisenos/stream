@@ -36,6 +36,19 @@
       @endif
   </div>
 
+   @if(count($user->foto->where('publico','=',2)))
+     
+      <div class="container">
+        
+      <h5>Quieres ver más fotos por 'n' créditos?</h5>
+
+      <a href="{{url('galeria').'/'.hashid()->encode($user->id)}}" class="btn red">Accede aquí</a>
+
+        
+      </div>
+     
+  @endif
+
 
   
 
