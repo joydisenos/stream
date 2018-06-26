@@ -78,11 +78,22 @@
        <input type="hidden" name="user_id" value="{{$user->id}}">
        <input type="hidden" name="email" value="{{Auth::user()->email}}">
       
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="date" name="detalles[]" class="materialize-textarea" required>
+          <label for="textarea1">Fecha</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="time" name="detalles[]" class="materialize-textarea" required>
+          <label for="textarea1">Hora</label>
+        </div>
+      </div>
       
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="detalles" name="detalles" class="materialize-textarea" required></textarea>
-          <label for="textarea1">Indiquenos la fecha y los días que solicita</label>
+          <textarea id="detalles" name="detalles[]" class="materialize-textarea" required></textarea>
+          <label for="textarea1">Observaciones</label>
         </div>
       </div>
 

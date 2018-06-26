@@ -93,7 +93,7 @@
   <div class="tap-target white-text" data-target="assignment_ind">
     <div class="tap-target-content">
       <h5>Hola, {{title_case(Auth::user()->name)}}</h5>
-      <p>Te gustaría tener una cita con {{title_case($user->name)}}? @if($user->dato->sexo == 'hombre')El @elseif($user->dato->sexo == 'mujer') Ella@elseif($user->dato->sexo == 'pareja')Ellos @else @endif se encuentra disponible para agendar una cita</p>
+      <p>Te gustaría tener una cita con {{title_case($user->name)}}? @if($user->dato->sexo == 'hombre') El @elseif($user->dato->sexo == 'mujer') Ella @elseif($user->dato->sexo == 'pareja') Ellos @else @endif se encuentra disponible para agendar una cita</p>
       <a href="#cita-solicitar" class="waves-effect waves-dark btn white red-text modal-trigger" onclick="$('#cita-solicitar').modal();">Solicitar</a>
     </div>
   </div>
