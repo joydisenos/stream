@@ -11,10 +11,14 @@ Zona de Usuarios
 <div class="row">
     <div class="col s12 blue-text" style="margin:5px auto;">
       <ul class="tabs">
-        <li class="tab col s3"><a href="#topcamaras">Top Camaras</a></li>
-        <li class="tab col s3"><a class="active" href="#perfil">Perfil</a></li>
-        <li class="tab col s3"><a href="#fotos">Mis Fotos</a></li>
-        <li class="tab col s3"><a href="#creditos">Créditos</a></li>
+        <li class="tab col"><a href="#topcamaras">Top Camaras</a></li>
+        <li class="tab col"><a class="active" href="#perfil">Perfil</a></li>
+        <li class="tab col"><a href="#fotos">Mis Fotos</a></li>
+        <li class="tab col"><a href="#creditos">Créditos</a></li>
+        @if(Auth::user()->dato->afiliado == 2)
+        <li class="tab col"><a href="#depositos">Depósitos</a></li>
+        @else
+        @endif
       </ul>
     </div>
     <div id="topcamaras" class="col s12">
@@ -213,6 +217,37 @@ Zona de Usuarios
 		</table>
 
 	</div>
+
+	@if(Auth::user()->dato->afiliado == 2)
+    <div id="depositos" class="col s12">
+
+    	<table class="table table-hover" >
+			<tr>
+				<td></td>
+				<td></td>
+				<td><h4>Total depósitos recibidos:</h4></td>
+				<td>
+					<h4>{{Auth::user()->gana->count()}}</h4>
+				</td>
+			</tr>
+			@foreach(Auth::user()->gana as $recibido)
+			<tr>
+				<td>{{hashid()->encode($recibido->id)}}</td>
+				<td>
+					@if($recibido->estatus == 1)
+					Pago en Evaluación
+					@elseif($recibido->estatus == 2)
+					Depositado
+					@endif
+				</td>
+				<td>{{$recibido->created_at}}</td>
+				<td>{{$recibido->creditos}}</td>
+			</tr>
+			@endforeach
+		</table>
+
+	</div>
+    @endif
   </div>
 
 
@@ -223,7 +258,7 @@ Zona de Usuarios
 <script>
   Dropzone.options.fotosperfil = {
     paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
-    maxFilesize: 4 // Tamaño máximo en MB
+    maxFilesize: 12 // Tamaño máximo en MB
 
 };
 </script>

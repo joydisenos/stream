@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Dato;
+use App\Info;
+use App\User;
 use App\Cita;
+use App\Billetera;
+use App\Pago;
 use App\Filtro;
 use App\Filtro_usuario;
 use Amranidev\Ajaxis\Ajaxis;
@@ -410,15 +414,28 @@ class DatoController extends Controller
 
     public function citas(Request $request)
     {
+        $info = Info::all()->first();
+        $afiliado = User::findOrFail($request->user_id);
+        $valor = $afiliado->dato->precio_cita_dia / $info->valor_usd;
 
-        $cita = new Cita();
-        $cita->user_id = $request->user_id;
-        $cita->email = $request->email;
-        $cita->detalles = implode(",", $request->input('detalles'));
-        $cita->estatus = 1;
-        $cita->save();
+        if(Auth::user()->billetera->disponible >= $valor)
+        {
+                $cita = new Cita();
+                $cita->user_id = $request->user_id;
+                $cita->email = $request->email;
+                $cita->detalles = implode(",", $request->input('detalles'));
+                $cita->estatus = 1;
+                $cita->save();
 
-        return redirect()->back()->with('status','Solicitud Realizada correctamente, nos contactaremos con usted para procesar su requerimiento');
-
+                $pago = new Pago();
+                $pago->user_id_usuario = Auth::user()->id;
+                $pago->user_id_afiliado = $request->user_id;
+                $pago->creditos = $valor;
+                $pago->save();
+        
+                return redirect()->back()->with('status','Solicitud Realizada correctamente, nos contactaremos con usted para procesar su requerimiento');
+        }else{
+                return redirect()->back()->with('status','No tiene Suficientes créditos para realizar esta solicitud');
+        }
     }
 }
