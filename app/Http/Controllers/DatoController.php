@@ -159,6 +159,11 @@ class DatoController extends Controller
     public function actualizar($id,Request $request)
     {
 
+        $validatedData = $request->validate([
+        'foto_perfil' => 'image',
+    ]);
+
+
         if ($request->hasFile('foto_perfil')) 
         {
         $file = $request->file('foto_perfil');

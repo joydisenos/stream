@@ -95,16 +95,17 @@ class AdminController extends Controller
         if(!$datos)
         {
             $datos = new Info();
-            $datos->link1 = 'vacio';
-            $datos->link1_url = 'vacio';
-            $datos->link2 = 'vacio';
-            $datos->link2_url = 'vacio';
-            $datos->link3 = 'vacio';
-            $datos->link3_url = 'vacio';
-            $datos->link4 = 'vacio';
-            $datos->link4_url = 'vacio';
-            $datos->politicas = 'vacio';
+            $datos->link1 = '';
+            $datos->link1_url = '';
+            $datos->link2 = '';
+            $datos->link2_url = '';
+            $datos->link3 = '';
+            $datos->link3_url = '';
+            $datos->link4 = '';
+            $datos->link4_url = '';
+            $datos->politicas = '';
             $datos->valor_usd = 2;
+            $datos->comision = 0;
             $datos->valor_btc = 2;
             $datos->email = 'admin@admin.com';
             $datos->id_paypal = 'Número de Cliente Paypal';

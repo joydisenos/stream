@@ -1,4 +1,3 @@
-@hasrole('dev')
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -199,4 +198,3 @@
     @endif
     </script>
 </html>
-@endhasrole

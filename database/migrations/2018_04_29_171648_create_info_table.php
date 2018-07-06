@@ -36,6 +36,8 @@ class CreateInfoTable extends Migration
 
             $table->float('valor_usd');
 
+            $table->float('comision');
+
             $table->float('valor_btc');
 
             $table->string('email');
