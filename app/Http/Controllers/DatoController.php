@@ -421,9 +421,17 @@ class DatoController extends Controller
     {
         $info = Info::all()->first();
         $afiliado = User::findOrFail($request->user_id);
-        $valor = $afiliado->dato->precio_cita_dia / $info->valor_usd;
+        
 
-        if(Auth::user()->billetera->disponible >= $valor)
+        $config = Info::first();
+
+        $preciodia = $afiliado->dato->precio_cita_dia;
+        $preciohora = $afiliado->dato->precio_cita_hora;
+
+        $preciodiat = ($preciodia + (($preciodia * $config->comision) / 100)) / $config->valor_usd; 
+        $preciohorat = ($preciohora + (($preciohora * $config->comision) / 100)) / $config->valor_usd; 
+
+        if(Auth::user()->billetera->disponible >= $preciodiat)
         {
                 $cita = new Cita();
                 $cita->user_id = $request->user_id;
@@ -432,10 +440,15 @@ class DatoController extends Controller
                 $cita->estatus = 1;
                 $cita->save();
 
+                $billetera = Auth::user()->billetera;
+                $billetera->disponible = $billetera->disponible - $preciodiat;
+                $billetera->save();
+
+
                 $pago = new Pago();
                 $pago->user_id_usuario = Auth::user()->id;
                 $pago->user_id_afiliado = $request->user_id;
-                $pago->creditos = $valor;
+                $pago->creditos = $preciodia;
                 $pago->save();
         
                 return redirect()->back()->with('status','Solicitud Realizada correctamente, nos contactaremos con usted para procesar su requerimiento');

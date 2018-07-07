@@ -40,7 +40,7 @@
      
       <div class="container">
         
-      <h5>Quieres ver más fotos por 'n' créditos?</h5>
+      <h5>Quieres ver más fotos por 2 créditos?</h5>
 
       <a href="{{url('galeria').'/'.hashid()->encode($user->id)}}" class="btn red">Accede aquí</a>
 
@@ -60,7 +60,13 @@
         <div class="col s12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
           <h4>Te gustaría agendar una cita?</h4>
+          @guest
+          <p><a href="{{url('login')}}">Inicia sesión</a> o <a href="{{url('register')}}">regístrate para más detalles</a></p>
+          @else
           <p class="left-align light">{{$user->dato->detalles_cita}}</p>
+          <p>Créditos por hora: {{$preciohorat}} créditos</p>
+          <p>Créditos por noche: {{$preciodiat}} créditos</p>
+          @endguest
         </div>
       </div>
 

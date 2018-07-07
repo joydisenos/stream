@@ -3,14 +3,14 @@
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header">
-			<h3>All Roles</h3>
+			<h3>Roles</h3>
 		</div>
 		<div class="box-body">
-			<a href="{{url('scaffold-roles/create')}}" class = "btn btn-success"><i class="fa fa-plus fa-md" aria-hidden="true"></i> New</a>
+			<a href="{{url('scaffold-roles/create')}}" class = "btn btn-success"><i class="fa fa-plus fa-md" aria-hidden="true"></i> Nuevo Rol</a>
 			<table class="table table-striped">
 				<head>
-					<th>Role</th>
-					<th>Actions</th>
+					<th>Rol</th>
+					<th>Acciones</th>
 				</head>
 				<tbody>
 					@foreach($roles as $role)

@@ -109,8 +109,8 @@
           <th>Precio por Día (Créditos)</th>
         </thead>
         <tr>
-          <td>{{$user->dato->precio_cita_hora / $datos->valor_usd}}</td>
-          <td>{{$user->dato->precio_cita_dia / $datos->valor_usd}}</td>
+          <td>{{$preciohorat}}</td>
+          <td>{{$preciodiat}}</td>
         </tr>
       </table>
       <p>{{$user->dato->detalles_cita}}</p>

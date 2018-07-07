@@ -26,7 +26,7 @@ Zona de Usuarios
                 <div class="col s6 file-field input-field">
                 <div class="btn blue darken-4">
                     <span>Foto de Perfil</span>
-                    <input type="file" id="foto_perfil" name="foto_perfil" class="form-control">
+                    <input type="file" id="foto_perfil" name="foto_perfil" class="form-control"> 
                 </div>
                 <div class="file-path-wrapper">
                      <input class="file-path validate" type="text">

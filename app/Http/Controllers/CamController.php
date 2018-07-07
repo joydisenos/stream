@@ -103,7 +103,13 @@ class CamController extends Controller
 
         $datos = Info::first();
 
-        return view('camara', compact('user','id','datos'));
+        $preciodia = $user->dato->precio_cita_dia;
+        $preciohora = $user->dato->precio_cita_hora;
+
+        $preciodiat = ($preciodia + (($preciodia * $datos->comision) / 100)) / $datos->valor_usd; 
+        $preciohorat = ($preciohora + (($preciohora * $datos->comision) / 100)) / $datos->valor_usd; 
+
+        return view('camara', compact('user','id','datos','preciodiat','preciohorat'));
     }
 
     public function detalles($id)
@@ -112,10 +118,17 @@ class CamController extends Controller
 
         $user = User::findOrFail($id_deco[0]);
 
+        $config = Info::first();
+
         $ultimafoto = Foto::where('user_id','=', $id_deco[0])->orderBy('created_at','DESC')->first();
 
+        $preciodia = $user->dato->precio_cita_dia;
+        $preciohora = $user->dato->precio_cita_hora;
 
-        return view('detalles', compact('user','id','ultimafoto'));
+        $preciodiat = ($preciodia + (($preciodia * $config->comision) / 100)) / $config->valor_usd; 
+        $preciohorat = ($preciohora + (($preciohora * $config->comision) / 100)) / $config->valor_usd; 
+
+        return view('detalles', compact('user','id','ultimafoto','config','preciodiat','preciohorat'));
 
     }
 
@@ -126,11 +139,22 @@ class CamController extends Controller
 
         $user = User::findOrFail($id_deco[0]);
 
+        $precio=2;
+        
+        if(Auth::user()->billetera->disponible >= $precio)
+        {
+
+            $billetera = Auth::user()->billetera;
+            $billetera->disponible = $billetera->disponible - $precio;
+            $billetera->save();
+
+        //aprueba
         $ultimafoto = Foto::where('user_id','=', $id_deco[0])->orderBy('created_at','DESC')->first();
 
-
         return view('detallesall', compact('user','id','ultimafoto'));
-
+        }else{
+            return redirect()->back()->with('status','No tiene suficientes créditos para realizar esta operación');
+        }
     }
 
     public function pago($id)

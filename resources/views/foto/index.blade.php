@@ -4,7 +4,7 @@
 
 <section class="content">
     <h1>
-        Foto Index
+        Fotos
     </h1>
     <input type="text" class="form-control" id="filtro">
     <table class = "table table-striped table-bordered table-hover" style = 'background:#fff' id="registros">
@@ -15,7 +15,7 @@
         
             <th>Usuario</th>
   
-            <th>Acciones</th>
+            <!-- <th>Acciones</th> -->
         </thead>
         <tbody>
             @foreach($fotos as $foto) 
@@ -23,13 +23,13 @@
                 <td><img width="150" src="{{asset('/storage')}}/{!!$foto->url!!}" alt=""></td>
                 <td>{!!$foto->url!!}</td>
               
-                <td>{!!$foto->user_id!!}</td>
+                <td>{!!title_case($foto->user->name)!!}</td>
 
-                <td>
-                    <a data-toggle="modal" data-target="#myModal" class = 'delete btn btn-danger btn-xs' data-link = "/foto/{!!$foto->id!!}/deleteMsg" ><i class = 'fa fa-trash'> delete</i></a>
+                <!--  <td>
+                  <a data-toggle="modal" data-target="#myModal" class = 'delete btn btn-danger btn-xs' data-link = "/foto/{!!$foto->id!!}/deleteMsg" ><i class = 'fa fa-trash'> delete</i></a>
                     <a href = '#' class = 'viewEdit btn btn-primary btn-xs' data-link = '/foto/{!!$foto->id!!}/edit'><i class = 'fa fa-edit'> edit</i></a>
-                    <a href = '#' class = 'viewShow btn btn-warning btn-xs' data-link = '/foto/{!!$foto->id!!}'><i class = 'fa fa-eye'> info</i></a>
-                </td>
+                    <a href = '#' class = 'viewShow btn btn-warning btn-xs' data-link = '/foto/{!!$foto->id!!}'><i class = 'fa fa-eye'> info</i></a> 
+                </td>-->
             </tr>
             @endforeach 
         </tbody>

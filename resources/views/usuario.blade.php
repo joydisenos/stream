@@ -17,6 +17,7 @@ Zona de Usuarios
         <li class="tab col"><a href="#creditos">Créditos</a></li>
         @if(Auth::user()->dato->afiliado == 2)
         <li class="tab col"><a href="#depositos">Depósitos</a></li>
+        <li class="tab col"><a href="#citas">Citas Solicitadas</a></li>
         @else
         @endif
       </ul>
@@ -242,6 +243,43 @@ Zona de Usuarios
 				</td>
 				<td>{{$recibido->created_at}}</td>
 				<td>{{$recibido->creditos}}</td>
+			</tr>
+			@endforeach
+		</table>
+
+	</div>
+
+	<div id="citas" class="col s12">
+
+    	<table class="table table-hover" >
+			<tr>
+				<td></td>
+				<td></td>
+				<td><h4>Total depósitos recibidos:</h4></td>
+				<td>
+					<h4>{{Auth::user()->citas->count()}}</h4>
+				</td>
+			</tr>
+			<tr>
+				<td>Número de Orden</td>
+				<td>Estatus</td>
+				
+				<td>Detalles</td>
+				<td>Fecha de solicitud</td>
+			</tr>
+			@foreach(Auth::user()->citas as $recibido)
+			<tr>
+				<td>{{hashid()->encode($recibido->id)}}</td>
+				<td>
+					@if($recibido->estatus == 1)
+					Por Ejecutar
+					@elseif($recibido->estatus == 2)
+					Terminado
+					@endif
+				</td>
+				<td>{{$recibido->detalles}}</td>
+				<td>{{$recibido->created_at->format('d/m')}}</td>
+				
 			</tr>
 			@endforeach
 		</table>

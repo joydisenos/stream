@@ -25,6 +25,11 @@
             </tr>
 
             <tr>
+                <td> <b>(%) Comisión</b> </td>
+                <td> <input class="form-control" type="number" step="0.05" name="comision" placeholder="Comisión sobre las tarifas" value="{{$datos->comision}}"> </td>
+            </tr>
+
+            <tr>
                 <td> <b>Email Admin</b> </td>
                 <td> <input class="form-control" type="email"  name="email" placeholder="admin@admin.com" value="{{$datos->email}}"> </td>
             </tr>

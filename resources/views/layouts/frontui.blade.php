@@ -151,6 +151,13 @@
 
   });
 </script>
+@if (session('status'))
+   <script>
+      M.toast({html: "{{ session('status') }}"});
+   </script>                    
+                            
+                       
+@endif
 @yield('scripts')
 </body>
 

@@ -119,6 +119,7 @@ class AdminController extends Controller
         $datos = Info::first();
         $datos->politicas = $request->politicas;
         $datos->valor_usd = $request->valor_usd;
+        $datos->comision = $request->comision;
         $datos->email = $request->email;
         $datos->id_paypal = $request->id_paypal;
         $datos->save();
